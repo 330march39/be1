@@ -14,14 +14,14 @@
         /* CSS Variables for Theming */
         :root {
             /* Light Mode Default Colors */
-            --bg-primary: #e0e7ff; /* Body background */
-            --bg-secondary: #ffffff; /* Container background */
-            --text-primary: #2c3e50; /* Main text color */
-            --text-secondary: #7f8c8d; /* Hint text color */
-            --button-bg-default: #f0f4f8; /* Option button default */
+            --bg-primary: #e0e7ff;
+            --bg-secondary: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --button-bg-default: #f0f4f8;
             --button-text-default: #34495e;
             --button-border-default: #dbe2ef;
-            --nav-button-bg: #6c5ce7; /* Navigation buttons */
+            --nav-button-bg: #6c5ce7;
             --nav-button-hover-bg: #5a4acb;
             --nav-button-shadow: rgba(108, 92, 231, 0.3);
             --start-button-bg: #2ecc71;
@@ -33,49 +33,51 @@
             --progress-bar-bg: #6c5ce7;
             --feedback-bg: #fdfdfd;
             --feedback-border: #e0e0e0;
-            --correct-feedback-text: #1a5e20; /* Darker green for light mode */
+            --correct-feedback-text: #1a5e20;
             --correct-feedback-border: #28a745;
-            --incorrect-feedback-text: #721c24; /* Darker red for light mode */
+            --incorrect-feedback-text: #721c24;
             --incorrect-feedback-border: #dc3545;
-            --correct-option-bg: #c8e6c9; /* Slightly more saturated light green for correct option */
-            --incorrect-option-bg: #f0b2b2; /* Slightly more saturated light red for incorrect option */
+            --correct-option-bg: #c8e6c9;
+            --incorrect-option-bg: #f0b2b2;
             --score-color: #1e3a8a;
             --score-comment-color: #4f46e5;
             --settings-button-bg: #3498db;
             --settings-button-hover-bg: #2980b9;
+            --settings-button-shadow: rgba(52, 152, 219, 0.3);
         }
 
-        /* Dark Mode Colors (Adjusted for readability) */
+        /* Dark Mode Colors */
         body.dark-mode {
-            --bg-primary: #1a1a2e; /* Darker, softer background */
-            --bg-secondary: #212a3d; /* Darker container */
-            --text-primary: #e0e7ff; /* Light text for main content */
-            --text-secondary: #9bb0d9; /* Muted light text for hints */
-            --button-bg-default: #3a4a5c; /* Darker button background */
-            --button-text-default: #e0e7ff; /* Light text for buttons */
-            --button-border-default: #5c708a; /* Muted border for buttons */
-            --nav-button-bg: #6a3a82; /* Darker purple for nav buttons */
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #212a3d;
+            --text-primary: #e0e7ff;
+            --text-secondary: #9bb0d9;
+            --button-bg-default: #3a4a5c;
+            --button-text-default: #e0e7ff;
+            --button-border-default: #5c708a;
+            --nav-button-bg: #6a3a82;
             --nav-button-hover-bg: #5a306e;
             --nav-button-shadow: rgba(106, 58, 130, 0.3);
-            --start-button-bg: #1e8247; /* Darker green for start button */
+            --start-button-bg: #1e8247;
             --start-button-hover-bg: #1a6e3c;
             --start-button-shadow: rgba(30, 130, 71, 0.3);
-            --interrupt-button-bg: #a93226; /* Darker red for interrupt button */
+            --interrupt-button-bg: #a93226;
             --interrupt-button-hover-bg: #922a1f;
             --interrupt-button-shadow: rgba(169, 50, 38, 0.3);
-            --progress-bar-bg: #6a3a82; /* Darker purple for progress bar */
-            --feedback-bg: #324054; /* Darker feedback background */
-            --feedback-border: #4a5a6e; /* Muted feedback border */
-            --correct-feedback-text: #c8e6c9; /* Lighter green for correct feedback text */
-            --correct-feedback-border: #28a745; /* Green border */
-            --incorrect-feedback-text: #f0b2b2; /* Lighter red for incorrect feedback text */
-            --incorrect-feedback-border: #dc3545; /* Red border */
-            --correct-option-bg: #2d6a4a; /* Darker green for correct option in dark mode */
-            --incorrect-option-bg: #8c3b3b; /* Darker red for incorrect option in dark mode */
-            --score-color: #e0e7ff; /* Light text for score */
-            --score-comment-color: #b886d9; /* Lighter purple for score comment */
-            --settings-button-bg: #2471a3; /* Darker blue for settings button */
+            --progress-bar-bg: #6a3a82;
+            --feedback-bg: #324054;
+            --feedback-border: #4a5a6e;
+            --correct-feedback-text: #c8e6c9;
+            --correct-feedback-border: #28a745;
+            --incorrect-feedback-text: #f0b2b2;
+            --incorrect-feedback-border: #dc3545;
+            --correct-option-bg: #2d6a4a;
+            --incorrect-option-bg: #8c3b3b;
+            --score-color: #e0e7ff;
+            --score-comment-color: #b886d9;
+            --settings-button-bg: #2471a3;
             --settings-button-hover-bg: #1f608a;
+            --settings-button-shadow: rgba(36, 113, 163, 0.3);
         }
 
         body {
@@ -95,21 +97,21 @@
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             padding: 25px;
-            padding-top: 50px; /* Increased padding to give space at the top */
+            padding-top: 50px;
             width: 100%;
             max-width: 600px;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px; /* Reduced gap */
             position: relative;
             z-index: 1;
             transition: background-color 0.3s ease;
         }
-        .screen { /* 共通の画面スタイル */
+        .screen {
             display: none;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px; /* Reduced gap */
         }
         .screen.active {
             display: flex;
@@ -120,7 +122,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: var(--feedback-bg); /* 背景色をテーマに合わせる */
+            background-color: var(--feedback-bg);
             border-radius: 10px;
             padding: 15px;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
@@ -159,25 +161,25 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         }
         .option-button:hover {
-            background-color: var(--button-border-default); /* ホバー時の色もテーマに合わせる */
+            background-color: var(--button-border-default);
             transform: translateY(-3px) scale(1.01);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
         }
         .option-button.correct {
-            background-color: var(--correct-option-bg); /* Use variable for themed background */
+            background-color: var(--correct-option-bg);
             border-color: var(--correct-feedback-border);
             color: var(--correct-feedback-text);
             box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
         }
         .option-button.incorrect {
-            background-color: var(--incorrect-option-bg); /* Use variable for themed background */
+            background-color: var(--incorrect-option-bg);
             border-color: var(--incorrect-feedback-border);
             color: var(--incorrect-feedback-text);
             box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
         }
         .navigation-buttons {
             display: flex;
-            justify-content: flex-end; /* 右寄せ */
+            justify-content: flex-end;
             margin-top: 20px;
             flex-wrap: wrap;
             gap: 10px;
@@ -206,19 +208,17 @@
             box-shadow: none;
         }
         .feedback-message {
-            margin-top: 15px;
+            margin-top: 10px; /* Reduced margin */
             font-size: 1rem;
             font-weight: 600;
-            min-height: 50px; /* Reduced height */
-            white-space: pre-wrap;
             text-align: left;
-            padding: 15px;
+            padding: 10px 15px; /* Reduced vertical padding */
             border-radius: 12px;
             background-color: var(--feedback-bg);
             border: 1px solid var(--feedback-border);
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            line-height: 1.5;
+            transition: all 0.3s ease;
         }
         .feedback-message.correct-feedback {
             color: var(--correct-feedback-text);
@@ -233,28 +233,26 @@
             justify-content: space-between;
             align-items: center;
             gap: 15px;
+            min-height: 24px;
         }
         .feedback-result {
             flex-grow: 1;
         }
         .feedback-result strong {
-            display: block;
-            margin-bottom: 5px;
             font-size: 1.1rem;
         }
         .explanation-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, border-top 0.5s ease-out;
+            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, margin-top 0.4s ease-out;
             padding-top: 0;
-            border-top: 0px solid transparent;
             margin-top: 0;
         }
         .explanation-content.show {
             max-height: 200px;
             padding-top: 10px;
-            border-top: 1px solid var(--feedback-border);
             margin-top: 10px;
+            border-top: 1px solid var(--feedback-border);
         }
         .explanation-text {
             font-weight: 400;
@@ -276,7 +274,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 2px 5px var(--nav-button-shadow);
-            flex-shrink: 0; /* Prevent button from shrinking */
+            flex-shrink: 0;
         }
         .toggle-explanation-button:hover {
             transform: translateY(-1px);
@@ -342,6 +340,10 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px var(--start-button-shadow);
         }
+        #settingsButton {
+            background-color: var(--settings-button-bg);
+            box-shadow: 0 5px 15px var(--settings-button-shadow);
+        }
 
         /* モーダル */
         .modal {
@@ -380,7 +382,7 @@
         .modal-title {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--score-color); /* タイトル色をテーマに合わせる */
+            color: var(--score-color);
             margin-bottom: 20px;
             transition: color 0.3s ease;
         }
@@ -391,7 +393,7 @@
             line-height: 1.6;
             transition: color 0.3s ease;
         }
-        .modal-buttons { /* Add flex for modal buttons */
+        .modal-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -412,7 +414,7 @@
             transform: translateY(-1px);
         }
         #modalCancelButton {
-            background-color: #7f8c8d; /* Muted grey for cancel */
+            background-color: #7f8c8d;
             box-shadow: 0 4px 10px rgba(127, 140, 141, 0.3);
         }
         #modalCancelButton:hover {
@@ -449,15 +451,15 @@
         #interruptButton {
             background-color: var(--interrupt-button-bg);
             box-shadow: 0 5px 15px var(--interrupt-button-shadow);
-            position: absolute; /* 絶対位置指定 */
-            top: 15px; /* 上からの位置 */
-            right: 15px; /* Changed from left: 15px */
-            left: unset; /* Ensure left is not set */
-            padding: 8px 15px; /* パディングを小さく */
-            font-size: 0.8rem; /* フォントサイズを小さく */
-            z-index: 10; /* 他の要素より手前に */
-            flex-grow: 0; /* 伸びないように */
-            min-width: unset; /* 最小幅をリセット */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            left: unset;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            z-index: 10;
+            flex-grow: 0;
+            min-width: unset;
         }
         #interruptButton:hover {
             background-color: var(--interrupt-button-hover-bg);
@@ -476,28 +478,16 @@
         }
         .confetti {
             position: absolute;
+            bottom: -10px;
             width: 8px;
-            height: 8px;
+            height: 12px;
             background-color: #f06;
-            border-radius: 50%;
             opacity: 0;
-            animation: fall 2.5s linear forwards;
         }
         .confetti:nth-child(2n) { background-color: #6cf; }
         .confetti:nth-child(3n) { background-color: #fc0; }
         .confetti:nth-child(4n) { background-color: #0c6; }
         .confetti:nth-child(5n) { background-color: #93f; }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-20px) rotateZ(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotateZ(360deg);
-                opacity: 0;
-            }
-        }
 
         /* Settings Screen Specific Styles */
         .settings-option {
@@ -528,7 +518,7 @@
             transition: border-color 0.2s ease;
         }
         .color-circle.selected {
-            border-color: var(--nav-button-bg); /* 選択された色を強調 */
+            border-color: var(--nav-button-bg);
         }
         .toggle-switch {
             position: relative;
@@ -564,7 +554,7 @@
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: var(--nav-button-bg); /* スライダーの色もテーマに合わせる */
+            background-color: var(--nav-button-bg);
         }
         input:checked + .slider:before {
             transform: translateX(26px);
@@ -579,8 +569,6 @@
             }
         }
     </style>
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <div class="container">
@@ -606,7 +594,7 @@
                 </select>
             </div>
             <button id="startButton" class="start-button">クイズ開始</button>
-            <button id="settingsButton" class="nav-button" style="background-color: var(--settings-button-bg); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);">設定</button>
+            <button id="settingsButton" class="nav-button">設定</button>
         </div>
 
         <!-- クイズ画面 -->
@@ -622,13 +610,11 @@
                 <div id="hintText" class="hint-text"></div>
             </div>
 
-            <div id="optionsGrid" class="options-grid">
-                <!-- Options will be dynamically loaded here -->
-            </div>
+            <div id="optionsGrid" class="options-grid"></div>
 
             <div id="feedbackMessage" class="feedback-message">
                 <div class="feedback-header">
-                    <div id="feedbackResult"></div> <!-- For Correct/Incorrect text -->
+                    <div id="feedbackResult"></div>
                     <button id="toggleExplanationButton" class="toggle-explanation-button hidden">解説▼</button>
                 </div>
                 <div id="explanationContent" class="explanation-content">
@@ -646,7 +632,7 @@
             <h2 class="text-2xl font-bold mb-4" style="color: var(--score-color);">クイズ結果</h2>
             <div id="finalScore" class="score-area"></div>
             <div id="scoreComment" class="score-comment"></div>
-            <div id="confettiContainer" class="confetti-container"></div> <!-- コンフェッティ用コンテナ -->
+            <div id="confettiContainer" class="confetti-container"></div>
             <button id="restartButton" class="nav-button mt-6">もう一度プレイ</button>
             <button id="redoIncorrectButton" class="nav-button mt-2" style="background-color: var(--interrupt-button-bg);">間違えた問題をもう一度やる</button>
         </div>
@@ -710,7 +696,7 @@
     </div>
 
     <script>
-        // 問題データ (省略)
+        // 問題データ (省略 - 元のコードと同じ)
         const allQuestions = [
             // GS_I-1 (名詞・代名詞)
             { id: '1-1', lesson: 'GS_I-1', text: "There was ______ on television this morning about e-sports.", hint: "(1つのとても面白いニュース)", options: ["a very interesting news", "very interesting news", "a piece of very interesting news", "many interesting news"], answer: "a piece of very interesting news", explanation: "newsのような不可算名詞を数えるときには 'a piece of~' を使います。2つだったら 'two pieces of -' となります。他の不可算名詞の例: a piece of information, two pieces of furniture, three pieces of advice" },
@@ -892,20 +878,51 @@
         let currentQuestions = [];
         let currentQuestionIndex = 0;
         let score = 0;
-        let incorrectQuestionIds = []; // For "苦手克服モード" (persistent)
-        let sessionIncorrectQuestionIds = []; // For "間違えた問題をもう一度やる" (session-only)
+        let incorrectQuestionIds = [];
+        let sessionIncorrectQuestionIds = [];
         let answeredQuestions = new Set();
         let currentMode = 'random-10';
-        let currentLessonId = null;
         let questionCount = 10;
         let showProgress = true;
         let enableSound = true;
 
-        // Tone.js サウンドオブジェクトの初期化
-        const correctSound = new Tone.Synth({ volume: -12 }).toDestination(); // 音量を下げる
-        const incorrectSound = new Tone.Synth({ volume: 5 }).toDestination();
+        // --- Sound Effect Setup ---
+        const sounds = {
+            correct: new Tone.PolySynth(Tone.Synth, { volume: -8 }).toDestination(),
+            incorrect: new Tone.FMSynth({ volume: 0, harmonicity: 1.5, modulationIndex: 10, oscillator: { type: "sawtooth" }, envelope: { attack: 0.01, decay: 0.3, sustain: 0.01, release: 0.1 } }).toDestination(),
+            click: new Tone.Synth({ volume: -15, oscillator: { type: 'triangle' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.01, release: 0.1 } }).toDestination(),
+            fanfare: new Tone.PolySynth(Tone.Synth, { volume: -5 }).toDestination(),
+            applause: new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 0.01, decay: 0.8, sustain: 0.1 } }).toDestination()
+        };
+        const correctNotes = [["G4", "C5", "E5"], ["A4", "D5", "F#5"], ["B4", "E5", "G#5"]];
+        let correctNoteIndex = 0;
 
-        // 画面要素の取得
+        function playSound(type) {
+            if (!enableSound || Tone.context.state !== 'running') return;
+            const now = Tone.now();
+            switch (type) {
+                case 'correct':
+                    sounds.correct.triggerAttackRelease(correctNotes[correctNoteIndex % 3], '16n', now);
+                    correctNoteIndex++;
+                    break;
+                case 'incorrect':
+                    sounds.incorrect.triggerAttackRelease("A2", "8n", now);
+                    break;
+                case 'click':
+                    sounds.click.triggerAttackRelease("C6", "16n", now);
+                    break;
+                case 'fanfare':
+                    sounds.fanfare.triggerAttackRelease(["C4", "E4", "G4", "C5"], "2n", now);
+                    sounds.fanfare.triggerAttackRelease(["G4", "B4", "D5", "G5"], "2n", now + 0.5);
+                    for (let i = 0; i < 10; i++) {
+                        sounds.applause.triggerAttackRelease("4n", now + i * 0.1 + 0.2);
+                    }
+                    break;
+            }
+        }
+        
+        // --- End of Sound Effect Setup ---
+
         const startScreen = document.getElementById('startScreen');
         const quizScreen = document.getElementById('quizScreen');
         const resultScreen = document.getElementById('resultScreen');
@@ -932,22 +949,17 @@
         const confettiContainer = document.getElementById('confettiContainer');
         const restartButton = document.getElementById('restartButton');
         const redoIncorrectButton = document.getElementById('redoIncorrectButton');
-
-        // 設定要素
         const darkModeToggle = document.getElementById('darkModeToggle');
         const themeColorCircles = document.querySelectorAll('.color-circle');
         const questionCountSelect = document.getElementById('questionCountSelect');
         const showProgressToggle = document.getElementById('showProgressToggle');
         const enableSoundToggle = document.getElementById('enableSoundToggle');
-
-        // モーダル要素
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
         const modalMessage = document.getElementById('modalMessage');
         const modalConfirmButton = document.getElementById('modalConfirmButton');
         const modalCancelButton = document.getElementById('modalCancelButton');
 
-        // モーダルを表示/非表示する関数
         function showModal(title, message, onConfirm) {
             modalTitle.textContent = title;
             modalMessage.textContent = message;
@@ -958,7 +970,6 @@
         function closeModal() { modal.classList.remove('show'); }
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-        // 配列をシャッフルする関数
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -966,59 +977,37 @@
             }
         }
 
-        // テーマ定義 (省略 - 元のコードと同じ)
-        const themes = { 'default':{light:{'--bg-primary':'#e0e7ff','--bg-secondary':'#ffffff','--text-primary':'#2c3e50','--text-secondary':'#7f8c8d','--button-bg-default':'#f0f4f8','--button-text-default':'#34495e','--button-border-default':'#dbe2ef','--nav-button-bg':'#6c5ce7','--nav-button-hover-bg':'#5a4acb','--nav-button-shadow':'rgba(108, 92, 231, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#6c5ce7','--feedback-bg':'#fdfdfd','--feedback-border':'#e0e0e0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#c8e6c9','--incorrect-option-bg':'#f0b2b2','--score-color':'#1e3a8a','--score-comment-color':'#4f46e5','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9'},dark:{'--bg-primary':'#1a1a2e','--bg-secondary':'#212a3d','--text-primary':'#e0e7ff','--text-secondary':'#9bb0d9','--button-bg-default':'#3a4a5c','--button-text-default':'#e0e7ff','--button-border-default':'#5c708a','--nav-button-bg':'#6a3a82','--nav-button-hover-bg':'#5a306e','--nav-button-shadow':'rgba(106, 58, 130, 0.3)','--start-button-bg':'#1e8247','--start-button-hover-bg':'#1a6e3c','--start-button-shadow':'rgba(30, 130, 71, 0.3)','--interrupt-button-bg':'#a93226','--interrupt-button-hover-bg':'#922a1f','--interrupt-button-shadow':'rgba(169, 50, 38, 0.3)','--progress-bar-bg':'#6a3a82','--feedback-bg':'#324054','--feedback-border':'#4a5a6e','--correct-feedback-text':'#c8e6c9','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f0b2b2','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#2d6a4a','--incorrect-option-bg':'#8c3b3b','--score-color':'#e0e7ff','--score-comment-color':'#b886d9','--settings-button-bg':'#2471a3','--settings-button-hover-bg':'#1f608a'}},'red':{light:{'--bg-primary':'#ffe0e0','--bg-secondary':'#ffffff','--text-primary':'#4a1a1a','--text-secondary':'#8b4545','--button-bg-default':'#f8e0e0','--button-text-default':'#4a1a1a','--button-border-default':'#f0c0c0','--nav-button-bg':'#e74c3c','--nav-button-hover-bg':'#c0392b','--nav-button-shadow':'rgba(231, 76, 60, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#6c5ce7','--interrupt-button-hover-bg':'#5a4acb','--interrupt-button-shadow':'rgba(108, 92, 231, 0.3)','--progress-bar-bg':'#e74c3c','--feedback-bg':'#fffafa','--feedback-border':'#f0d0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e0e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#c0392b','--score-comment-color':'#e74c3c','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9'},dark:{'--bg-primary':'#4a1a1a','--bg-secondary':'#6b2020','--text-primary':'#ffe0e0','--text-secondary':'#ffbaba','--button-bg-default':'#8b3030','--button-text-default':'#ffe0e0','--button-border-default':'#a94040','--nav-button-bg':'#c0392b','--nav-button-hover-bg':'#a93226','--nav-button-shadow':'rgba(192, 57, 43, 0.3)','--start-button-bg':'#27ae60','--start-button-hover-bg':'#229954','--start-button-shadow':'rgba(39, 174, 96, 0.3)','--interrupt-button-bg':'#8e44ad','--interrupt-button-hover-bg':'#7f3a9e','--interrupt-button-shadow':'rgba(142, 68, 173, 0.3)','--progress-bar-bg':'#c0392b','--feedback-bg':'#6b2020','--feedback-border':'#a94040','--correct-feedback-text':'#d4edda','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f8d7da','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#8b3030','--incorrect-option-bg':'#a94040','--score-color':'#ffe0e0','--score-comment-color':'#e74c3c','--settings-button-bg':'#2980b9','--settings-button-hover-bg':'#2471a3'}},'green':{light:{'--bg-primary':'#e0ffe0','--bg-secondary':'#ffffff','--text-primary':'#1a4a1a','--text-secondary':'#458b45','--button-bg-default':'#e0f8e0','--button-text-default':'#1a4a1a','--button-border-default':'#c0f0c0','--nav-button-bg':'#2ecc71','--nav-button-hover-bg':'#27ae60','--nav-button-shadow':'rgba(46, 204, 113, 0.3)','--start-button-bg':'#6c5ce7','--start-button-hover-bg':'#5a4acb','--start-button-shadow':'rgba(108, 92, 231, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#2ecc71','--feedback-bg':'#fafffa','--feedback-border':'#d0f0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#e0f8e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#27ae60','--score-comment-color':'#2ecc71','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9'},dark:{'--bg-primary':'#1a4a1a','--bg-secondary':'#206b20','--text-primary':'#e0ffe0','--text-secondary':'#baffba','--button-bg-default':'#308b30','--button-text-default':'#e0ffe0','--button-border-default':'#40a940','--nav-button-bg':'#27ae60','--nav-button-hover-bg':'#229954','--nav-button-shadow':'rgba(39, 174, 96, 0.3)','--start-button-bg':'#8e44ad','--start-button-hover-bg':'#7f3a9e','--start-button-shadow':'rgba(142, 68, 173, 0.3)','--interrupt-button-bg':'#c0392b','--interrupt-button-hover-bg':'#a93226','--interrupt-button-shadow':'rgba(192, 57, 43, 0.3)','--progress-bar-bg':'#27ae60','--feedback-bg':'#206b20','--feedback-border':'#40a940','--correct-feedback-text':'#d4edda','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f8d7da','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#308b30','--incorrect-option-bg':'#40a940','--score-color':'#e0ffe0','--score-comment-color':'#2ecc71','--settings-button-bg':'#2980b9','--settings-button-hover-bg':'#2471a3'}},'orange':{light:{'--bg-primary':'#fff0e0','--bg-secondary':'#ffffff','--text-primary':'#4a301a','--text-secondary':'#8b6a45','--button-bg-default':'#f8e8e0','--button-text-default':'#4a301a','--button-border-default':'#f0e0c0','--nav-button-bg':'#f39c12','--nav-button-hover-bg':'#e67e22','--nav-button-shadow':'rgba(243, 156, 18, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#f39c12','--feedback-bg':'#fffaf0','--feedback-border':'#f0e0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e8e0','--incorrect-option-bg':'#f0e0c0','--score-color':'#e67e22','--score-comment-color':'#f39c12','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9'},dark:{'--bg-primary':'#4a301a','--bg-secondary':'#6b4020','--text-primary':'#fff0e0','--text-secondary':'#ffe0ba','--button-bg-default':'#8b5030','--button-text-default':'#fff0e0','--button-border-default':'#a96040','--nav-button-bg':'#e67e22','--nav-button-hover-bg':'#d35400','--nav-button-shadow':'rgba(230, 126, 34, 0.3)','--start-button-bg':'#27ae60','--start-button-hover-bg':'#229954','--start-button-shadow':'rgba(39, 174, 96, 0.3)','--interrupt-button-bg':'#c0392b','--interrupt-button-hover-bg':'#a93226','--interrupt-button-shadow':'rgba(192, 57, 43, 0.3)','--progress-bar-bg':'#e67e22','--feedback-bg':'#6b4020','--feedback-border':'#a96040','--correct-feedback-text':'#d4edda','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f8d7da','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#8b5030','--incorrect-option-bg':'#a94040','--score-color':'#fff0e0','--score-comment-color':'#f39c12','--settings-button-bg':'#2980b9','--settings-button-hover-bg':'#2471a3'}} };
+        const themes = { 'default':{light:{'--bg-primary':'#e0e7ff','--bg-secondary':'#ffffff','--text-primary':'#2c3e50','--text-secondary':'#7f8c8d','--button-bg-default':'#f0f4f8','--button-text-default':'#34495e','--button-border-default':'#dbe2ef','--nav-button-bg':'#6c5ce7','--nav-button-hover-bg':'#5a4acb','--nav-button-shadow':'rgba(108, 92, 231, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#6c5ce7','--feedback-bg':'#fdfdfd','--feedback-border':'#e0e0e0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#c8e6c9','--incorrect-option-bg':'#f0b2b2','--score-color':'#1e3a8a','--score-comment-color':'#4f46e5','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'red':{light:{'--bg-primary':'#ffe0e0','--bg-secondary':'#ffffff','--text-primary':'#4a1a1a','--text-secondary':'#8b4545','--button-bg-default':'#f8e0e0','--button-text-default':'#4a1a1a','--button-border-default':'#f0c0c0','--nav-button-bg':'#e74c3c','--nav-button-hover-bg':'#c0392b','--nav-button-shadow':'rgba(231, 76, 60, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#6c5ce7','--interrupt-button-hover-bg':'#5a4acb','--interrupt-button-shadow':'rgba(108, 92, 231, 0.3)','--progress-bar-bg':'#e74c3c','--feedback-bg':'#fffafa','--feedback-border':'#f0d0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e0e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#c0392b','--score-comment-color':'#e74c3c','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'green':{light:{'--bg-primary':'#e0ffe0','--bg-secondary':'#ffffff','--text-primary':'#1a4a1a','--text-secondary':'#458b45','--button-bg-default':'#e0f8e0','--button-text-default':'#1a4a1a','--button-border-default':'#c0f0c0','--nav-button-bg':'#2ecc71','--nav-button-hover-bg':'#27ae60','--nav-button-shadow':'rgba(46, 204, 113, 0.3)','--start-button-bg':'#6c5ce7','--start-button-hover-bg':'#5a4acb','--start-button-shadow':'rgba(108, 92, 231, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#2ecc71','--feedback-bg':'#fafffa','--feedback-border':'#d0f0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#e0f8e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#27ae60','--score-comment-color':'#2ecc71','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'orange':{light:{'--bg-primary':'#fff0e0','--bg-secondary':'#ffffff','--text-primary':'#4a301a','--text-secondary':'#8b6a45','--button-bg-default':'#f8e8e0','--button-text-default':'#4a301a','--button-border-default':'#f0e0c0','--nav-button-bg':'#f39c12','--nav-button-hover-bg':'#e67e22','--nav-button-shadow':'rgba(243, 156, 18, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#f39c12','--feedback-bg':'#fffaf0','--feedback-border':'#f0e0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e8e0','--incorrect-option-bg':'#f0e0c0','--score-color':'#e67e22','--score-comment-color':'#f39c12','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}} };
+        const darkThemeColors = { '--bg-primary':'#1a1a2e','--bg-secondary':'#212a3d','--text-primary':'#e0e7ff','--text-secondary':'#9bb0d9','--button-bg-default':'#3a4a5c','--button-text-default':'#e0e7ff','--button-border-default':'#5c708a','--nav-button-bg':'#6a3a82','--nav-button-hover-bg':'#5a306e','--nav-button-shadow':'rgba(106, 58, 130, 0.3)','--start-button-bg':'#1e8247','--start-button-hover-bg':'#1a6e3c','--start-button-shadow':'rgba(30, 130, 71, 0.3)','--interrupt-button-bg':'#a93226','--interrupt-button-hover-bg':'#922a1f','--interrupt-button-shadow':'rgba(169, 50, 38, 0.3)','--progress-bar-bg':'#6a3a82','--feedback-bg':'#324054','--feedback-border':'#4a5a6e','--correct-feedback-text':'#c8e6c9','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f0b2b2','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#2d6a4a','--incorrect-option-bg':'#8c3b3b','--score-color':'#e0e7ff','--score-comment-color':'#b886d9','--settings-button-bg':'#2471a3','--settings-button-hover-bg':'#1f608a','--settings-button-shadow':'rgba(36, 113, 163, 0.3)' };
 
-        // 色を適用するコア関数
         function applyColors(themeName, isDark) {
             const root = document.documentElement;
-            let colorsToApply;
-            
-            if (isDark) {
-                // ダークモード時は常にデフォルトのダークテーマを使用
-                colorsToApply = themes.default.dark;
-            } else {
-                // ライトモード時は選択されたテーマを使用
-                colorsToApply = themes[themeName]?.light || themes.default.light;
-            }
-
+            const colorsToApply = isDark ? darkThemeColors : (themes[themeName]?.light || themes.default.light);
             for (const [prop, value] of Object.entries(colorsToApply)) {
                 root.style.setProperty(prop, value);
             }
-            updateSettingsButtonColor();
         }
 
-        // ダークモード切り替え
         function setDarkMode(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
             localStorage.setItem('darkMode', isDark);
-            const currentThemeName = localStorage.getItem('themeColor') || 'default';
-            applyColors(currentThemeName, isDark);
+            applyColors(localStorage.getItem('themeColor') || 'default', isDark);
         }
 
-        // テーマカラー切り替え
         function setThemeColor(themeName) {
             localStorage.setItem('themeColor', themeName);
-            const isDark = document.body.classList.contains('dark-mode');
-            applyColors(themeName, isDark);
+            if (!document.body.classList.contains('dark-mode')) {
+                applyColors(themeName, false);
+            }
         }
 
-        // 設定ボタンの色を更新
-        function updateSettingsButtonColor() {
-            const rootStyles = getComputedStyle(document.documentElement);
-            settingsButton.style.backgroundColor = rootStyles.getPropertyValue('--settings-button-bg');
-            settingsButton.style.boxShadow = `0 5px 15px ${rootStyles.getPropertyValue('--settings-button-shadow')}`;
-        }
-
-        // クイズ準備
         async function prepareQuiz() {
             if (Tone.context.state !== 'running') await Tone.start();
-
+            playSound('click');
             currentMode = quizModeSelect.value;
             localStorage.setItem('lastSelectedMode', currentMode);
             questionCount = parseInt(questionCountSelect.value, 10);
             localStorage.setItem('questionCount', questionCount);
-
             currentQuestions = [];
             answeredQuestions.clear();
             sessionIncorrectQuestionIds = [];
@@ -1051,18 +1040,15 @@
             loadQuestion();
         }
 
-        // 問題ロード
         function loadQuestion() {
             if (currentQuestions.length === 0 || currentQuestionIndex >= currentQuestions.length) {
                 showQuizResult();
                 return;
             }
-
             const question = currentQuestions[currentQuestionIndex];
             questionTextElement.textContent = question.text;
             hintTextElement.textContent = question.hint;
             optionsGridElement.innerHTML = '';
-            
             feedbackResultElement.innerHTML = '';
             feedbackMessageElement.classList.remove('correct-feedback', 'incorrect-feedback');
             explanationContentElement.classList.remove('show');
@@ -1081,30 +1067,27 @@
                 button.addEventListener('click', () => selectOption(option, question.answer, question.id));
                 optionsGridElement.appendChild(button);
             });
-
             updateProgressBar();
             updateNavigationButtons();
         }
 
-        // 回答選択
         function selectOption(selectedOption, correctAnswer, questionId) {
             if (answeredQuestions.has(questionId)) return;
-
             disableOptions();
             const currentQuestion = currentQuestions[currentQuestionIndex];
 
             if (selectedOption === correctAnswer) {
+                playSound('correct');
                 feedbackResultElement.innerHTML = `<strong>正解！</strong>`;
                 feedbackMessageElement.classList.add('correct-feedback');
                 score++;
                 incorrectQuestionIds = incorrectQuestionIds.filter(id => id !== questionId);
-                if (enableSound) correctSound.triggerAttackRelease("G5", "8n");
             } else {
+                playSound('incorrect');
                 feedbackResultElement.innerHTML = `<strong>不正解...</strong> 正解は「${correctAnswer}」でした。`;
                 feedbackMessageElement.classList.add('incorrect-feedback');
                 if (!incorrectQuestionIds.includes(questionId)) incorrectQuestionIds.push(questionId);
                 if (!sessionIncorrectQuestionIds.includes(questionId)) sessionIncorrectQuestionIds.push(questionId);
-                if (enableSound) incorrectSound.triggerAttackRelease("C3", "4n");
             }
             
             answeredQuestions.add(questionId);
@@ -1135,13 +1118,9 @@
         }
 
         function updateProgressBar() {
-            if (!showProgress) {
-                progressBarContainer.style.display = 'none';
-                progressText.style.display = 'none';
-                return;
-            }
-            progressBarContainer.style.display = 'block';
-            progressText.style.display = 'block';
+            progressBarContainer.style.display = showProgress ? 'block' : 'none';
+            progressText.style.display = showProgress ? 'block' : 'none';
+            if (!showProgress) return;
             const total = currentQuestions.length;
             const progress = total > 0 ? (currentQuestionIndex + 1) / total : 0;
             progressBar.style.width = `${progress * 100}%`;
@@ -1151,14 +1130,26 @@
         function createConfetti() {
             confettiContainer.innerHTML = '';
             const colors = ['#f06', '#6cf', '#fc0', '#0c6', '#93f'];
-            for (let i = 0; i < 60; i++) { // Reduced count for performance
-                const confetti = document.createElement('span');
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.left = (45 + Math.random() * 10) + '%';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = `${Math.random() * 2}s`;
-                confetti.style.animationDuration = `${1.5 + Math.random() * 1.5}s`; // Varied duration
-                confetti.style.transform = `scale(${0.7 + Math.random() * 0.6})`;
+                
+                const xEnd = Math.random() * 250 - 125;
+                const yEnd = -200 - (Math.random() * 150);
+                const rotation = Math.random() * 720 - 360;
+
+                const animation = confetti.animate([
+                    { transform: `translate(0, 0) rotate(0)`, opacity: 1 },
+                    { transform: `translate(${xEnd * 0.5}px, ${yEnd}px) rotate(${rotation}deg)`, opacity: 1 },
+                    { transform: `translate(${xEnd}px, 100vh) rotate(${rotation * 2}deg)`, opacity: 0 }
+                ], {
+                    duration: 2500 + Math.random() * 1500,
+                    easing: 'cubic-bezier(0.1, 0.5, 0.5, 1)',
+                    delay: Math.random() * 200
+                });
+                animation.onfinish = () => confetti.remove();
                 confettiContainer.appendChild(confetti);
             }
         }
@@ -1172,6 +1163,7 @@
             let comment = '';
             if (percentage === 100) {
                 comment = '素晴らしい！満点です！🎉';
+                playSound('fanfare');
                 createConfetti();
             } else if (percentage >= 80) {
                 comment = 'よくできました！この調子で頑張りましょう！✨';
@@ -1184,8 +1176,17 @@
             redoIncorrectButton.style.display = sessionIncorrectQuestionIds.length > 0 ? 'block' : 'none';
         }
 
-        // イベントリスナー
+        // Event Listeners
         startButton.addEventListener('click', prepareQuiz);
+        nextButton.addEventListener('click', () => {
+            playSound('click');
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        });
         settingsButton.addEventListener('click', () => {
             startScreen.classList.remove('active');
             settingsScreen.classList.add('active');
@@ -1194,14 +1195,6 @@
             settingsScreen.classList.remove('active');
             startScreen.classList.add('active');
         });
-        nextButton.addEventListener('click', () => {
-            if (currentQuestionIndex < currentQuestions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion();
-            } else {
-                showQuizResult();
-            }
-        });
         interruptButton.addEventListener('click', () => {
             showModal('クイズ中断', 'クイズを中断しますか？現在の進捗は失われます。', () => {
                 quizScreen.classList.remove('active');
@@ -1209,11 +1202,13 @@
             });
         });
         restartButton.addEventListener('click', () => {
+            playSound('click');
             resultScreen.classList.remove('active');
             startScreen.classList.add('active');
             confettiContainer.innerHTML = '';
         });
         redoIncorrectButton.addEventListener('click', () => {
+            playSound('click');
             if (sessionIncorrectQuestionIds.length === 0) return;
             currentQuestions = allQuestions.filter(q => sessionIncorrectQuestionIds.includes(q.id));
             shuffleArray(currentQuestions);
@@ -1229,8 +1224,6 @@
             explanationContentElement.classList.toggle('show');
             toggleExplanationButton.textContent = explanationContentElement.classList.contains('show') ? '解説▲' : '解説▼';
         });
-
-        // 設定関連のイベントリスナー
         darkModeToggle.addEventListener('change', (e) => setDarkMode(e.target.checked));
         themeColorCircles.forEach(circle => {
             circle.addEventListener('click', () => {
@@ -1242,32 +1235,22 @@
         questionCountSelect.addEventListener('change', (e) => localStorage.setItem('questionCount', e.target.value));
         showProgressToggle.addEventListener('change', (e) => {
             showProgress = e.target.checked;
-            localStorage.setItem('showProgress', showProgress);
+            localStorage.setItem('showProgress', String(showProgress));
             updateProgressBar();
         });
         enableSoundToggle.addEventListener('change', (e) => {
             enableSound = e.target.checked;
-            localStorage.setItem('enableSound', enableSound);
+            localStorage.setItem('enableSound', String(enableSound));
         });
 
         // PWA Service Worker Registration
         if ('serviceWorker' in navigator) {
-            const serviceWorkerScript = `
-                const CACHE_NAME = 'be1-gs-quiz-cache-v2';
-                const urlsToCache = ['/', '/index.html'];
-                self.addEventListener('install', e => e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache))));
-                self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));
-            `;
-            const swBlob = new Blob([serviceWorkerScript], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(swBlob);
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register(swUrl)
-                    .then(reg => console.log('ServiceWorker registration successful'))
-                    .catch(err => console.log('ServiceWorker registration failed: ', err));
-            });
+            const swScript = `const CACHE='v3';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/','index.html']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+            const swBlob = new Blob([swScript], { type: 'application/javascript' });
+            window.addEventListener('load', () => navigator.serviceWorker.register(URL.createObjectURL(swBlob)));
         }
 
-        // 初期化処理
+        // Initialization
         document.addEventListener('DOMContentLoaded', () => {
             const manifestContent = { "name": "BEⅠ GS Quiz", "short_name": "BEⅠ Quiz", "description": "Basic English Grammar & Structure Quiz App", "start_url": ".", "display": "standalone", "background_color": "#e0e7ff", "theme_color": "#6c5ce7", "icons": [{ "src": "https://placehold.co/192x192/6c5ce7/ffffff?text=BE", "sizes": "192x192", "type": "image/png" }, { "src": "https://placehold.co/512x512/6c5ce7/ffffff?text=BE", "sizes": "512x512", "type": "image/png" }] };
             const blob = new Blob([JSON.stringify(manifestContent)], { type: 'application/json' });
@@ -1277,9 +1260,9 @@
             darkModeToggle.checked = isDark;
             
             const savedTheme = localStorage.getItem('themeColor') || 'default';
-            themeColorCircles.forEach(c => c.classList.toggle('selected', c.dataset.theme === savedTheme));
+            document.querySelector(`.color-circle[data-theme="${savedTheme}"]`)?.classList.add('selected');
             
-            applyColors(savedTheme, isDark); // Apply initial colors
+            applyColors(savedTheme, isDark);
 
             const storedIncorrect = localStorage.getItem('incorrectQuestions');
             if (storedIncorrect) incorrectQuestionIds = JSON.parse(storedIncorrect);
