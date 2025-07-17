@@ -41,35 +41,35 @@
             --settings-button-hover-bg: #2980b9;
         }
 
-        /* Dark Mode Colors */
+        /* Dark Mode Colors (Adjusted for readability) */
         body.dark-mode {
-            --bg-primary: #2c3e50;
-            --bg-secondary: #34495e;
-            --text-primary: #ecf0f1;
-            --text-secondary: #bdc3c7;
-            --button-bg-default: #4a627a;
-            --button-text-default: #ecf0f1;
-            --button-border-default: #5a7590;
-            --nav-button-bg: #8e44ad;
-            --nav-button-hover-bg: #7f3a9e;
-            --nav-button-shadow: rgba(142, 68, 173, 0.3);
-            --start-button-bg: #27ae60;
-            --start-button-hover-bg: #229954;
-            --start-button-shadow: rgba(39, 174, 96, 0.3);
-            --interrupt-button-bg: #c0392b;
-            --interrupt-button-hover-bg: #a93226;
-            --interrupt-button-shadow: rgba(192, 57, 43, 0.3);
-            --progress-bar-bg: #8e44ad;
-            --feedback-bg: #4a627a;
-            --feedback-border: #5a7590;
-            --correct-feedback-text: #d4edda;
-            --correct-feedback-border: #28a745;
-            --incorrect-feedback-text: #f8d7da;
-            --incorrect-feedback-border: #dc3545;
-            --score-color: #ecf0f1;
-            --score-comment-color: #9b59b6;
-            --settings-button-bg: #2980b9;
-            --settings-button-hover-bg: #2471a3;
+            --bg-primary: #1a1a2e; /* Darker, softer background */
+            --bg-secondary: #212a3d; /* Darker container */
+            --text-primary: #e0e7ff; /* Light text for main content */
+            --text-secondary: #9bb0d9; /* Muted light text for hints */
+            --button-bg-default: #3a4a5c; /* Darker button background */
+            --button-text-default: #e0e7ff; /* Light text for buttons */
+            --button-border-default: #5c708a; /* Muted border for buttons */
+            --nav-button-bg: #6a3a82; /* Darker purple for nav buttons */
+            --nav-button-hover-bg: #5a306e;
+            --nav-button-shadow: rgba(106, 58, 130, 0.3);
+            --start-button-bg: #1e8247; /* Darker green for start button */
+            --start-button-hover-bg: #1a6e3c;
+            --start-button-shadow: rgba(30, 130, 71, 0.3);
+            --interrupt-button-bg: #a93226; /* Darker red for interrupt button */
+            --interrupt-button-hover-bg: #922a1f;
+            --interrupt-button-shadow: rgba(169, 50, 38, 0.3);
+            --progress-bar-bg: #6a3a82; /* Darker purple for progress bar */
+            --feedback-bg: #324054; /* Darker feedback background */
+            --feedback-border: #4a5a6e; /* Muted feedback border */
+            --correct-feedback-text: #c8e6c9; /* Lighter green for correct feedback text */
+            --correct-feedback-border: #28a745; /* Green border */
+            --incorrect-feedback-text: #f0b2b2; /* Lighter red for incorrect feedback text */
+            --incorrect-feedback-border: #dc3545; /* Red border */
+            --score-color: #e0e7ff; /* Light text for score */
+            --score-comment-color: #b886d9; /* Lighter purple for score comment */
+            --settings-button-bg: #2471a3; /* Darker blue for settings button */
+            --settings-button-hover-bg: #1f608a;
         }
 
         body {
@@ -170,7 +170,7 @@
         }
         .navigation-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* 右寄せ */
             margin-top: 20px;
             flex-wrap: wrap;
             gap: 10px;
@@ -218,21 +218,64 @@
             margin-bottom: 5px;
             font-size: 1.1rem;
         }
+        .feedback-message .explanation-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, border-top 0.5s ease-out;
+            padding-top: 0;
+            border-top: 0px solid transparent;
+            margin-top: 0;
+        }
+        .feedback-message .explanation-content.show {
+            max-height: 200px; /* Adjust as needed, large enough to show content */
+            padding-top: 10px;
+            border-top: 1px solid var(--feedback-border);
+            margin-top: 10px;
+        }
         .feedback-message .explanation-text {
             font-weight: 400;
             color: var(--text-primary); /* 解説の色もテーマに合わせる */
             font-size: 0.95rem; /* 少し大きく */
-            margin-top: 8px;
             transition: color 0.3s ease;
         }
+        .toggle-explanation-button {
+            background-color: var(--nav-button-bg);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px var(--nav-button-shadow);
+        }
+        .toggle-explanation-button:hover {
+            transform: translateY(-1px);
+        }
+        .toggle-explanation-button.hidden {
+            display: none;
+        }
+
         .correct-feedback {
-            color: var(--correct-feedback-text);
+            background-color: var(--correct-feedback-bg-dark); /* Dark mode specific background */
+            color: var(--correct-feedback-text); /* Light mode text, adjusted for dark mode */
             border-color: var(--correct-feedback-border);
         }
         .incorrect-feedback {
-            color: var(--incorrect-feedback-text);
+            background-color: var(--incorrect-feedback-bg-dark); /* Dark mode specific background */
+            color: var(--incorrect-feedback-text); /* Light mode text, adjusted for dark mode */
             border-color: var(--incorrect-feedback-border);
         }
+        body.dark-mode .correct-feedback {
+            background-color: var(--correct-feedback-bg-dark);
+            color: var(--correct-feedback-text);
+        }
+        body.dark-mode .incorrect-feedback {
+            background-color: var(--incorrect-feedback-bg-dark);
+            color: var(--incorrect-feedback-text);
+        }
+
+
         .score-area {
             font-size: 1.8rem;
             font-weight: 800;
@@ -248,16 +291,23 @@
             margin-top: 10px;
             transition: color 0.3s ease;
         }
-        .mode-selection-dropdown {
+        .mode-selection-dropdown, .question-count-selection {
             margin-bottom: 15px;
         }
-        .mode-selection-dropdown select {
+        .mode-selection-dropdown label, .question-count-selection label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .mode-selection-dropdown select, .question-count-selection select {
             width: 100%;
             padding: 12px;
             border-radius: 10px;
-            border: 1px solid var(--button-border-default); /* テーマに合わせる */
+            border: 1px solid var(--button-border-default);
             font-size: 1rem;
-            background-color: var(--button-bg-default); /* テーマに合わせる */
+            background-color: var(--button-bg-default);
             color: var(--button-text-default);
             appearance: none;
             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23333%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
@@ -321,7 +371,7 @@
         .modal-title {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--score-color);
+            color: var(--score-color); /* タイトル色をテーマに合わせる */
             margin-bottom: 20px;
             transition: color 0.3s ease;
         }
@@ -331,6 +381,11 @@
             margin-bottom: 30px;
             line-height: 1.6;
             transition: color 0.3s ease;
+        }
+        .modal-buttons { /* Add flex for modal buttons */
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
         .modal-button {
             background-color: var(--nav-button-bg);
@@ -347,6 +402,14 @@
             background-color: var(--nav-button-hover-bg);
             transform: translateY(-1px);
         }
+        #modalCancelButton {
+            background-color: #7f8c8d; /* Muted grey for cancel */
+            box-shadow: 0 4px 10px rgba(127, 140, 141, 0.3);
+        }
+        #modalCancelButton:hover {
+            background-color: #616e7c;
+        }
+
 
         /* プログレスバー */
         .progress-container {
@@ -377,6 +440,14 @@
         #interruptButton {
             background-color: var(--interrupt-button-bg);
             box-shadow: 0 5px 15px var(--interrupt-button-shadow);
+            position: absolute; /* 絶対位置指定 */
+            top: 15px; /* 上からの位置 */
+            left: 15px; /* 左からの位置 */
+            padding: 8px 15px; /* パディングを小さく */
+            font-size: 0.8rem; /* フォントサイズを小さく */
+            z-index: 10; /* 他の要素より手前に */
+            flex-grow: 0; /* 伸びないように */
+            min-width: unset; /* 最小幅をリセット */
         }
         #interruptButton:hover {
             background-color: var(--interrupt-button-hover-bg);
@@ -486,7 +557,7 @@
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: #6c5ce7;
+            background-color: var(--nav-button-bg); /* スライダーの色もテーマに合わせる */
         }
         input:checked + .slider:before {
             transform: translateX(26px);
@@ -506,11 +577,11 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-3xl font-extrabold text-indigo-800 mb-6">BEⅠ GS Quiz</h1>
+        <h1 class="text-3xl font-extrabold text-indigo-800 mb-6" style="color: var(--score-color);">BEⅠ GS Quiz</h1>
 
         <!-- スタート画面 -->
         <div id="startScreen" class="screen active">
-            <p class="text-lg text-gray-700 mb-4">学習したいモードを選択してください。</p>
+            <p class="text-lg mb-4" style="color: var(--text-primary);">学習したいモードを選択してください。</p>
             <div class="mode-selection-dropdown">
                 <select id="quizModeSelect">
                     <option value="random-10">全レッスンからランダム10問</option>
@@ -533,6 +604,7 @@
 
         <!-- クイズ画面 -->
         <div id="quizScreen" class="screen">
+            <button id="interruptButton" class="nav-button">中断する</button>
             <div class="progress-container">
                 <div id="progressBar" class="progress-bar"></div>
             </div>
@@ -547,27 +619,32 @@
                 <!-- Options will be dynamically loaded here -->
             </div>
 
-            <div id="feedbackMessage" class="feedback-message"></div>
+            <div id="feedbackMessage" class="feedback-message">
+                <div id="explanationContent" class="explanation-content">
+                    <div class="explanation-text"></div>
+                </div>
+                <button id="toggleExplanationButton" class="toggle-explanation-button hidden">▼ 解説を表示</button>
+            </div>
 
             <div class="navigation-buttons">
-                <button id="prevButton" class="nav-button" disabled>前の問題</button>
+                <!-- <button id="prevButton" class="nav-button" disabled>前の問題</button> -->
                 <button id="nextButton" class="nav-button">次の問題</button>
-                <button id="interruptButton" class="nav-button">中断する</button>
             </div>
         </div>
 
         <!-- 結果画面 -->
         <div id="resultScreen" class="screen">
-            <h2 class="text-2xl font-bold text-indigo-800 mb-4">クイズ結果</h2>
+            <h2 class="text-2xl font-bold mb-4" style="color: var(--score-color);">クイズ結果</h2>
             <div id="finalScore" class="score-area"></div>
             <div id="scoreComment" class="score-comment"></div>
             <div id="confettiContainer" class="confetti-container"></div> <!-- コンフェッティ用コンテナ -->
             <button id="restartButton" class="nav-button mt-6">もう一度プレイ</button>
+            <button id="redoIncorrectButton" class="nav-button mt-2" style="background-color: var(--interrupt-button-bg);">間違えた問題をもう一度やる</button>
         </div>
 
         <!-- 設定画面 -->
         <div id="settingsScreen" class="screen">
-            <h2 class="text-2xl font-bold text-indigo-800 mb-4">設定</h2>
+            <h2 class="text-2xl font-bold mb-4" style="color: var(--score-color);">設定</h2>
             <div class="settings-option">
                 <label for="darkModeToggle">ダークモード</label>
                 <label class="toggle-switch">
@@ -584,6 +661,29 @@
                     <div class="color-circle" data-theme="orange" style="background-color: #f39c12;"></div>
                 </div>
             </div>
+            <div class="settings-option">
+                <label for="questionCountSelect">問題数</label>
+                <select id="questionCountSelect">
+                    <option value="5">5問</option>
+                    <option value="10">10問</option>
+                    <option value="15">15問</option>
+                    <option value="20">20問</option>
+                </select>
+            </div>
+            <div class="settings-option">
+                <label for="showProgressToggle">進捗状況</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="showProgressToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="settings-option">
+                <label for="enableSoundToggle">効果音</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="enableSoundToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
             <button id="backToStartButton" class="nav-button mt-6">戻る</button>
         </div>
     </div>
@@ -593,7 +693,10 @@
         <div class="modal-content">
             <h2 id="modalTitle" class="modal-title"></h2>
             <p id="modalMessage" class="modal-message"></p>
-            <button id="modalCloseButton" class="modal-button">閉じる</button>
+            <div class="modal-buttons">
+                <button id="modalConfirmButton" class="modal-button">はい</button>
+                <button id="modalCancelButton" class="modal-button">キャンセル</button>
+            </div>
         </div>
     </div>
 
@@ -802,6 +905,13 @@
         let answeredQuestions = new Set(); // 回答済みの問題IDを保存
         let currentMode = 'random-10'; // 初期モードは全レッスンからランダム10問
         let currentLessonId = null; // 選択されたレッスンのID
+        let questionCount = 10; // デフォルトの問題数
+        let showProgress = true; // 進捗状況表示のオン/オフ
+        let enableSound = true; // 効果音のオン/オフ
+
+        // サウンドオブジェクト
+        const correctSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3'); // 例: 短い成功音
+        const incorrectSound = new Audio('https://www.soundjay.com/buttons/sounds/button-9.mp3'); // 例: 短い失敗音
 
         // 画面要素の取得
         const startScreen = document.getElementById('startScreen');
@@ -816,31 +926,47 @@
         const hintTextElement = document.getElementById('hintText');
         const optionsGridElement = document.getElementById('optionsGrid');
         const feedbackMessageElement = document.getElementById('feedbackMessage');
-        const prevButton = document.getElementById('prevButton');
+        const explanationContentElement = document.getElementById('explanationContent');
+        const explanationTextElement = feedbackMessageElement.querySelector('.explanation-text');
+        const toggleExplanationButton = document.getElementById('toggleExplanationButton');
         const nextButton = document.getElementById('nextButton');
         const interruptButton = document.getElementById('interruptButton');
+        const progressBarContainer = document.querySelector('.progress-container'); // プログレスバーのコンテナ
         const progressBar = document.getElementById('progressBar');
         const progressText = document.getElementById('progressText');
         const finalScore = document.getElementById('finalScore');
         const scoreComment = document.getElementById('scoreComment');
         const confettiContainer = document.getElementById('confettiContainer');
         const restartButton = document.getElementById('restartButton');
+        const redoIncorrectButton = document.getElementById('redoIncorrectButton'); // 間違えた問題をもう一度やるボタン
 
         // 設定要素
         const darkModeToggle = document.getElementById('darkModeToggle');
         const themeColorCircles = document.querySelectorAll('.color-circle');
+        const questionCountSelect = document.getElementById('questionCountSelect');
+        const showProgressToggle = document.getElementById('showProgressToggle'); // 進捗状況トグル
+        const enableSoundToggle = document.getElementById('enableSoundToggle'); // 効果音トグル
 
         // モーダル要素
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
         const modalMessage = document.getElementById('modalMessage');
-        const modalCloseButton = document.getElementById('modalCloseButton');
+        const modalConfirmButton = document.getElementById('modalConfirmButton');
+        const modalCancelButton = document.getElementById('modalCancelButton');
 
         // モーダルを表示する関数
-        function showModal(title, message) {
+        function showModal(title, message, onConfirm) {
             modalTitle.textContent = title;
             modalMessage.textContent = message;
             modal.classList.add('show');
+
+            modalConfirmButton.onclick = () => {
+                closeModal();
+                if (onConfirm) onConfirm();
+            };
+            modalCancelButton.onclick = () => {
+                closeModal();
+            };
         }
 
         // モーダルを閉じる関数
@@ -848,10 +974,12 @@
             modal.classList.remove('show');
         }
 
-        modalCloseButton.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                closeModal();
+                // モーダルの背景をクリックした場合のみ閉じる
+                if (e.target === modal) {
+                    closeModal();
+                }
             }
         });
 
@@ -863,110 +991,180 @@
             }
         }
 
-        // テーマを適用する関数
-        function applyTheme(themeName) {
-            const root = document.documentElement;
-            let themeColors = {};
-
-            switch (themeName) {
-                case 'default':
-                    themeColors = {
-                        '--nav-button-bg': '#6c5ce7', '--nav-button-hover-bg': '#5a4acb', '--nav-button-shadow': 'rgba(108, 92, 231, 0.3)',
-                        '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
-                        '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
-                        '--progress-bar-bg': '#6c5ce7',
-                        '--score-comment-color': '#4f46e5',
-                        '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
-                    };
-                    break;
-                case 'red':
-                    themeColors = {
-                        '--nav-button-bg': '#e74c3c', '--nav-button-hover-bg': '#c0392b', '--nav-button-shadow': 'rgba(231, 76, 60, 0.3)',
-                        '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
-                        '--interrupt-button-bg': '#6c5ce7', '--interrupt-button-hover-bg': '#5a4acb', '--interrupt-button-shadow': 'rgba(108, 92, 231, 0.3)',
-                        '--progress-bar-bg': '#e74c3c',
-                        '--score-comment-color': '#c0392b',
-                        '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
-                    };
-                    break;
-                case 'green':
-                    themeColors = {
-                        '--nav-button-bg': '#2ecc71', '--nav-button-hover-bg': '#27ae60', '--nav-button-shadow': 'rgba(46, 204, 113, 0.3)',
-                        '--start-button-bg': '#6c5ce7', '--start-button-hover-bg': '#5a4acb', '--start-button-shadow': 'rgba(108, 92, 231, 0.3)',
-                        '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
-                        '--progress-bar-bg': '#2ecc71',
-                        '--score-comment-color': '#27ae60',
-                        '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
-                    };
-                    break;
-                case 'orange':
-                    themeColors = {
-                        '--nav-button-bg': '#f39c12', '--nav-button-hover-bg': '#e67e22', '--nav-button-shadow': 'rgba(243, 156, 18, 0.3)',
-                        '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
-                        '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
-                        '--progress-bar-bg': '#f39c12',
-                        '--score-comment-color': '#e67e22',
-                        '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
-                    };
-                    break;
+        // テーマとダークモードの色定義
+        const themes = {
+            'default': {
+                light: {
+                    '--bg-primary': '#e0e7ff', '--bg-secondary': '#ffffff',
+                    '--text-primary': '#2c3e50', '--text-secondary': '#7f8c8d',
+                    '--button-bg-default': '#f0f4f8', '--button-text-default': '#34495e', '--button-border-default': '#dbe2ef',
+                    '--nav-button-bg': '#6c5ce7', '--nav-button-hover-bg': '#5a4acb', '--nav-button-shadow': 'rgba(108, 92, 231, 0.3)',
+                    '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
+                    '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
+                    '--progress-bar-bg': '#6c5ce7',
+                    '--feedback-bg': '#fdfdfd', '--feedback-border': '#e0e0e0',
+                    '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#1e3a8a', '--score-comment-color': '#4f46e5',
+                    '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
+                },
+                dark: {
+                    '--bg-primary': '#1a1a2e', '--bg-secondary': '#212a3d',
+                    '--text-primary': '#e0e7ff', '--text-secondary': '#9bb0d9',
+                    '--button-bg-default': '#3a4a5c', '--button-text-default': '#e0e7ff', '--button-border-default': '#5c708a',
+                    '--nav-button-bg': '#6a3a82', '--nav-button-hover-bg': '#5a306e', '--nav-button-shadow': 'rgba(106, 58, 130, 0.3)',
+                    '--start-button-bg': '#1e8247', '--start-button-hover-bg': '#1a6e3c', '--start-button-shadow': 'rgba(30, 130, 71, 0.3)',
+                    '--interrupt-button-bg': '#a93226', '--interrupt-button-hover-bg': '#922a1f', '--interrupt-button-shadow': 'rgba(169, 50, 38, 0.3)',
+                    '--progress-bar-bg': '#6a3a82',
+                    '--feedback-bg': '#324054', '--feedback-border': '#4a5a6e',
+                    '--correct-feedback-text': '#c8e6c9', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#f0b2b2', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#e0e7ff', '--score-comment-color': '#b886d9',
+                    '--settings-button-bg': '#2471a3', '--settings-button-hover-bg': '#1f608a'
+                }
+            },
+            'red': {
+                light: {
+                    '--bg-primary': '#ffe0e0', '--bg-secondary': '#ffffff',
+                    '--text-primary': '#4a1a1a', '--text-secondary': '#8b4545',
+                    '--button-bg-default': '#f8e0e0', '--button-text-default': '#4a1a1a', '--button-border-default': '#f0c0c0',
+                    '--nav-button-bg': '#e74c3c', '--nav-button-hover-bg': '#c0392b', '--nav-button-shadow': 'rgba(231, 76, 60, 0.3)',
+                    '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
+                    '--interrupt-button-bg': '#6c5ce7', '--interrupt-button-hover-bg': '#5a4acb', '--interrupt-button-shadow': 'rgba(108, 92, 231, 0.3)',
+                    '--progress-bar-bg': '#e74c3c',
+                    '--feedback-bg': '#fffafa', '--feedback-border': '#f0d0d0',
+                    '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#c0392b', '--score-comment-color': '#e74c3c',
+                    '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
+                },
+                dark: {
+                    '--bg-primary': '#4a1a1a', '--bg-secondary': '#6b2020',
+                    '--text-primary': '#ffe0e0', '--text-secondary': '#ffbaba',
+                    '--button-bg-default': '#8b3030', '--button-text-default': '#ffe0e0', '--button-border-default': '#a94040',
+                    '--nav-button-bg': '#c0392b', '--nav-button-hover-bg': '#a93226', '--nav-button-shadow': 'rgba(192, 57, 43, 0.3)',
+                    '--start-button-bg': '#27ae60', '--start-button-hover-bg': '#229954', '--start-button-shadow': 'rgba(39, 174, 96, 0.3)',
+                    '--interrupt-button-bg': '#8e44ad', '--interrupt-button-hover-bg': '#7f3a9e', '--interrupt-button-shadow': 'rgba(142, 68, 173, 0.3)',
+                    '--progress-bar-bg': '#c0392b',
+                    '--feedback-bg': '#6b2020', '--feedback-border': '#a94040',
+                    '--correct-feedback-text': '#d4edda', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#f8d7da', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#ffe0e0', '--score-comment-color': '#e74c3c',
+                    '--settings-button-bg': '#2980b9', '--settings-button-hover-bg': '#2471a3'
+                }
+            },
+            'green': {
+                light: {
+                    '--bg-primary': '#e0ffe0', '--bg-secondary': '#ffffff',
+                    '--text-primary': '#1a4a1a', '--text-secondary': '#458b45',
+                    '--button-bg-default': '#e0f8e0', '--button-text-default': '#1a4a1a', '--button-border-default': '#c0f0c0',
+                    '--nav-button-bg': '#2ecc71', '--nav-button-hover-bg': '#27ae60', '--nav-button-shadow': 'rgba(46, 204, 113, 0.3)',
+                    '--start-button-bg': '#6c5ce7', '--start-button-hover-bg': '#5a4acb', '--start-button-shadow': 'rgba(108, 92, 231, 0.3)',
+                    '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
+                    '--progress-bar-bg': '#2ecc71',
+                    '--feedback-bg': '#fafffa', '--feedback-border': '#d0f0d0',
+                    '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#27ae60', '--score-comment-color': '#2ecc71',
+                    '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
+                },
+                dark: {
+                    '--bg-primary': '#1a4a1a', '--bg-secondary': '#206b20',
+                    '--text-primary': '#e0ffe0', '--text-secondary': '#baffba',
+                    '--button-bg-default': '#308b30', '--button-text-default': '#e0ffe0', '--button-border-default': '#40a940',
+                    '--nav-button-bg': '#27ae60', '--nav-button-hover-bg': '#229954', '--nav-button-shadow': 'rgba(39, 174, 96, 0.3)',
+                    '--start-button-bg': '#8e44ad', '--start-button-hover-bg': '#7f3a9e', '--start-button-shadow': 'rgba(142, 68, 173, 0.3)',
+                    '--interrupt-button-bg': '#c0392b', '--interrupt-button-hover-bg': '#a93226', '--interrupt-button-shadow': 'rgba(192, 57, 43, 0.3)',
+                    '--progress-bar-bg': '#27ae60',
+                    '--feedback-bg': '#206b20', '--feedback-border': '#40a940',
+                    '--correct-feedback-text': '#d4edda', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#f8d7da', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#e0ffe0', '--score-comment-color': '#2ecc71',
+                    '--settings-button-bg': '#2980b9', '--settings-button-hover-bg': '#2471a3'
+                }
+            },
+            'orange': {
+                light: {
+                    '--bg-primary': '#fff0e0', '--bg-secondary': '#ffffff',
+                    '--text-primary': '#4a301a', '--text-secondary': '#8b6a45',
+                    '--button-bg-default': '#f8e8e0', '--button-text-default': '#4a301a', '--button-border-default': '#f0e0c0',
+                    '--nav-button-bg': '#f39c12', '--nav-button-hover-bg': '#e67e22', '--nav-button-shadow': 'rgba(243, 156, 18, 0.3)',
+                    '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
+                    '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
+                    '--progress-bar-bg': '#f39c12',
+                    '--feedback-bg': '#fffaf0', '--feedback-border': '#f0e0d0',
+                    '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#e67e22', '--score-comment-color': '#f39c12',
+                    '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
+                },
+                dark: {
+                    '--bg-primary': '#4a301a', '--bg-secondary': '#6b4020',
+                    '--text-primary': '#fff0e0', '--text-secondary': '#ffe0ba',
+                    '--button-bg-default': '#8b5030', '--button-text-default': '#fff0e0', '--button-border-default': '#a96040',
+                    '--nav-button-bg': '#e67e22', '--nav-button-hover-bg': '#d35400', '--nav-button-shadow': 'rgba(230, 126, 34, 0.3)',
+                    '--start-button-bg': '#27ae60', '--start-button-hover-bg': '#229954', '--start-button-shadow': 'rgba(39, 174, 96, 0.3)',
+                    '--interrupt-button-bg': '#c0392b', '--interrupt-button-hover-bg': '#a93226', '--interrupt-button-shadow': 'rgba(192, 57, 43, 0.3)',
+                    '--progress-bar-bg': '#e67e22',
+                    '--feedback-bg': '#6b4020', '--feedback-border': '#a96040',
+                    '--correct-feedback-text': '#d4edda', '--correct-feedback-border': '#28a745',
+                    '--incorrect-feedback-text': '#f8d7da', '--incorrect-feedback-border': '#dc3545',
+                    '--score-color': '#fff0e0', '--score-comment-color': '#f39c12',
+                    '--settings-button-bg': '#2980b9', '--settings-button-hover-bg': '#2471a3'
+                }
             }
+        };
 
-            for (const [prop, value] of Object.entries(themeColors)) {
+        // テーマを適用する関数
+        function applyTheme(themeName, isDark) {
+            const root = document.documentElement;
+            const currentThemeSet = themes[themeName];
+            const colorsToApply = isDark ? currentThemeSet.dark : currentThemeSet.light;
+
+            for (const [prop, value] of Object.entries(colorsToApply)) {
                 root.style.setProperty(prop, value);
             }
             localStorage.setItem('themeColor', themeName);
-            updateSettingsButtonColor(); // 設定ボタンの色も更新
+            updateSettingsButtonColor();
         }
 
         // ダークモードを適用する関数
         function applyDarkMode(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
             localStorage.setItem('darkMode', isDark);
+            // ダークモードが切り替わったら、現在のテーマを再適用して色を更新
+            const currentThemeName = localStorage.getItem('themeColor') || 'default';
+            applyTheme(currentThemeName, isDark);
         }
 
         // 設定ボタンの色を更新する関数
         function updateSettingsButtonColor() {
-            const currentTheme = localStorage.getItem('themeColor') || 'default';
+            const currentThemeName = localStorage.getItem('themeColor') || 'default';
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
-            const root = document.documentElement;
+            const themeData = themes[currentThemeName];
+            const colors = isDarkMode ? themeData.dark : themeData.light;
 
-            // 一時的にテーマの変数を設定ボタンに適用
-            let tempNavBg, tempNavShadow;
-            if (isDarkMode) {
-                switch (currentTheme) {
-                    case 'default': tempNavBg = '#8e44ad'; tempNavShadow = 'rgba(142, 68, 173, 0.3)'; break;
-                    case 'red': tempNavBg = '#c0392b'; tempNavShadow = 'rgba(192, 57, 43, 0.3)'; break;
-                    case 'green': tempNavBg = '#27ae60'; tempNavShadow = 'rgba(39, 174, 96, 0.3)'; break;
-                    case 'orange': tempNavBg = '#e67e22'; tempNavShadow = 'rgba(230, 126, 34, 0.3)'; break;
-                }
-            } else {
-                switch (currentTheme) {
-                    case 'default': tempNavBg = '#6c5ce7'; tempNavShadow = 'rgba(108, 92, 231, 0.3)'; break;
-                    case 'red': tempNavBg = '#e74c3c'; tempNavShadow = 'rgba(231, 76, 60, 0.3)'; break;
-                    case 'green': tempNavBg = '#2ecc71'; tempNavShadow = 'rgba(46, 204, 113, 0.3)'; break;
-                    case 'orange': tempNavBg = '#f39c12'; tempNavShadow = 'rgba(243, 156, 18, 0.3)'; break;
-                }
-            }
-            settingsButton.style.backgroundColor = tempNavBg;
-            settingsButton.style.boxShadow = `0 5px 15px ${tempNavShadow}`;
+            settingsButton.style.backgroundColor = colors['--settings-button-bg'];
+            settingsButton.style.boxShadow = `0 5px 15px ${colors['--settings-button-shadow']}`;
         }
-
 
         // クイズモードを設定し、問題を準備する関数
         function prepareQuiz() {
             currentMode = quizModeSelect.value;
+            localStorage.setItem('lastSelectedMode', currentMode); // 選択されたモードを保存
+            questionCount = parseInt(questionCountSelect.value, 10); // 問題数を取得
+            localStorage.setItem('questionCount', questionCount); // 問題数を保存
+
             currentQuestions = [];
             answeredQuestions.clear();
             score = 0;
             currentQuestionIndex = 0;
 
             if (currentMode === 'random-10') {
-                // 全問題からランダムに10問選択
                 const shuffledAll = [...allQuestions];
                 shuffleArray(shuffledAll);
-                currentQuestions = shuffledAll.slice(0, 10);
+                currentQuestions = shuffledAll.slice(0, questionCount); // 選択された問題数に調整
             } else if (currentMode === 'incorrect') {
-                // 苦手克服モード
                 const storedIncorrectQuestions = localStorage.getItem('incorrectQuestions');
                 if (storedIncorrectQuestions) {
                     incorrectQuestions = JSON.parse(storedIncorrectQuestions);
@@ -974,20 +1172,21 @@
                 currentQuestions = allQuestions.filter(q => incorrectQuestions.includes(q.id));
                 if (currentQuestions.length === 0) {
                     showModal('苦手克服モード', '現在、間違えた問題がありません。他のモードで学習しましょう！');
-                    quizModeSelect.value = 'random-10'; // デフォルトに戻す
-                    return; // クイズ開始を中断
+                    quizModeSelect.value = 'random-10';
+                    localStorage.setItem('lastSelectedMode', 'random-10'); // デフォルトに戻す
+                    return;
                 }
                 shuffleArray(currentQuestions);
             } else {
-                // 各レッスンモード
                 currentLessonId = currentMode;
                 currentQuestions = allQuestions.filter(q => q.lesson === currentLessonId);
                 shuffleArray(currentQuestions);
+                // レッスンモードでも問題数を適用
+                currentQuestions = currentQuestions.slice(0, questionCount);
             }
 
-            // 画面切り替え
             startScreen.classList.remove('active');
-            settingsScreen.classList.remove('active'); // 設定画面も非表示に
+            settingsScreen.classList.remove('active');
             quizScreen.classList.add('active');
             resultScreen.classList.remove('active');
 
@@ -997,7 +1196,6 @@
 
         // 問題をロードして表示する関数
         function loadQuestion() {
-            // 問題がない場合は終了メッセージを表示
             if (currentQuestions.length === 0 || currentQuestionIndex >= currentQuestions.length) {
                 showQuizResult();
                 return;
@@ -1006,11 +1204,12 @@
             const question = currentQuestions[currentQuestionIndex];
             questionTextElement.textContent = question.text;
             hintTextElement.textContent = question.hint;
-            optionsGridElement.innerHTML = ''; // 選択肢をクリア
+            optionsGridElement.innerHTML = '';
             feedbackMessageElement.innerHTML = ''; // フィードバックメッセージをクリア
             feedbackMessageElement.classList.remove('correct-feedback', 'incorrect-feedback');
+            explanationContentElement.classList.remove('show'); // 解説を非表示に
+            toggleExplanationButton.classList.add('hidden'); // ボタンを非表示に
 
-            // 選択肢をシャッフルして表示
             const shuffledOptions = [...question.options];
             shuffleArray(shuffledOptions);
 
@@ -1023,8 +1222,7 @@
                 optionsGridElement.appendChild(button);
             });
 
-            updateNavigationButtons();
-            updateProgressBar();
+            updateProgressBar(); // プログレスバーは毎回更新
 
             // 既に回答済みの問題の場合、選択肢の状態を復元
             if (answeredQuestions.has(question.id)) {
@@ -1032,10 +1230,18 @@
                 const selectedOption = localStorage.getItem(`selectedOption_${question.id}`);
                 const correctOption = question.answer;
                 const isCorrect = localStorage.getItem(`isCorrect_${question.id}`) === 'true';
-                const explanationText = question.explanation ? `<div class="explanation-text">解説: ${question.explanation}</div>` : '';
                 
-                feedbackMessageElement.innerHTML = isCorrect ? `<strong>正解！</strong>` : `<strong>不正解...</strong> 正解は「${correctOption}」でした。${explanationText}`;
+                feedbackMessageElement.innerHTML = isCorrect ? `<strong>正解！</strong>` : `<strong>不正解...</strong> 正解は「${correctOption}」でした。`;
                 feedbackMessageElement.classList.add(isCorrect ? 'correct-feedback' : 'incorrect-feedback');
+                
+                // 解説を表示するボタンを表示
+                if (question.explanation) {
+                    explanationTextElement.textContent = question.explanation;
+                    toggleExplanationButton.classList.remove('hidden');
+                    // 既に回答済みの問題の場合、解説はデフォルトで表示状態にする
+                    explanationContentElement.classList.add('show');
+                    toggleExplanationButton.textContent = '▲ 解説を隠す';
+                }
 
                 const buttons = optionsGridElement.querySelectorAll('.option-button');
                 buttons.forEach(button => {
@@ -1045,7 +1251,13 @@
                         button.classList.add('incorrect');
                     }
                 });
+            } else {
+                // 未回答の問題の場合、解説ボタンを非表示に
+                toggleExplanationButton.classList.add('hidden');
+                explanationContentElement.classList.remove('show');
+                toggleExplanationButton.textContent = '▼ 解説を表示';
             }
+            updateNavigationButtons(); // ナビゲーションボタンの状態を更新
         }
 
         // 選択肢がクリックされた時の処理
@@ -1058,7 +1270,6 @@
 
             let isCorrect = false;
             const currentQuestion = currentQuestions[currentQuestionIndex];
-            const explanationText = currentQuestion.explanation ? `<div class="explanation-text">解説: ${currentQuestion.explanation}</div>` : '';
 
             if (selectedOption === correctAnswer) {
                 feedbackMessageElement.innerHTML = `<strong>正解！</strong>`;
@@ -1066,12 +1277,14 @@
                 score++;
                 isCorrect = true;
                 incorrectQuestions = incorrectQuestions.filter(id => id !== questionId);
+                if (enableSound) correctSound.play(); // 効果音再生
             } else {
-                feedbackMessageElement.innerHTML = `<strong>不正解...</strong> 正解は「${correctAnswer}」でした。${explanationText}`;
+                feedbackMessageElement.innerHTML = `<strong>不正解...</strong> 正解は「${correctAnswer}」でした。`;
                 feedbackMessageElement.classList.add('incorrect-feedback');
                 if (!incorrectQuestions.includes(questionId)) {
                     incorrectQuestions.push(questionId);
                 }
+                if (enableSound) incorrectSound.play(); // 効果音再生
             }
             answeredQuestions.add(questionId);
 
@@ -1088,6 +1301,14 @@
                 }
             });
 
+            // 解答後に解説を表示するボタンを表示
+            if (currentQuestion.explanation) {
+                explanationTextElement.textContent = currentQuestion.explanation;
+                toggleExplanationButton.classList.remove('hidden');
+                explanationContentElement.classList.remove('show'); // 最初は閉じた状態
+                toggleExplanationButton.textContent = '▼ 解説を表示';
+            }
+
             updateNavigationButtons();
         }
 
@@ -1102,7 +1323,7 @@
 
         // ナビゲーションボタンの状態を更新する関数
         function updateNavigationButtons() {
-            prevButton.disabled = currentQuestionIndex === 0;
+            // prevButtonは廃止
             nextButton.disabled = currentQuestionIndex === currentQuestions.length - 1 && answeredQuestions.has(currentQuestions[currentQuestionIndex].id);
 
             if (answeredQuestions.size === currentQuestions.length && currentQuestions.length > 0) {
@@ -1115,6 +1336,15 @@
 
         // プログレスバーとテキストを更新する関数
         function updateProgressBar() {
+            if (!showProgress) {
+                progressBarContainer.style.display = 'none';
+                progressText.style.display = 'none';
+                return;
+            } else {
+                progressBarContainer.style.display = 'block';
+                progressText.style.display = 'block';
+            }
+
             const totalQuestions = currentQuestions.length;
             const progress = totalQuestions > 0 ? (currentQuestionIndex + 1) / totalQuestions : 0;
             const progressPercentage = progress * 100;
@@ -1162,6 +1392,13 @@
                 comment = '頑張ろう！基礎をしっかり固めていきましょう！💪';
             }
             scoreComment.textContent = comment;
+
+            // 間違えた問題がなければ「間違えた問題をもう一度やる」ボタンを非表示
+            if (incorrectQuestions.length === 0) {
+                redoIncorrectButton.style.display = 'none';
+            } else {
+                redoIncorrectButton.style.display = 'block';
+            }
         }
 
         // イベントリスナーの設定
@@ -1170,6 +1407,10 @@
         settingsButton.addEventListener('click', () => {
             startScreen.classList.remove('active');
             settingsScreen.classList.add('active');
+            // 設定画面を開くときに、現在の問題数と進捗・効果音のオンオフを反映
+            questionCountSelect.value = localStorage.getItem('questionCount') || '10';
+            showProgressToggle.checked = showProgress;
+            enableSoundToggle.checked = enableSound;
         });
 
         backToStartButton.addEventListener('click', () => {
@@ -1177,12 +1418,7 @@
             startScreen.classList.add('active');
         });
 
-        prevButton.addEventListener('click', () => {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
-            }
-        });
+        // prevButtonは廃止されたため、関連するイベントリスナーも削除
 
         nextButton.addEventListener('click', () => {
             if (answeredQuestions.size === currentQuestions.length && currentQuestions.length > 0) {
@@ -1194,31 +1430,48 @@
         });
 
         interruptButton.addEventListener('click', () => {
-            showModal('クイズ中断', 'クイズを中断します。スタート画面に戻ります。');
-            modalCloseButton.onclick = () => {
-                closeModal();
+            showModal('クイズ中断', 'クイズを中断しますか？現在の進捗は失われます。', () => {
+                // Confirm callback
                 quizScreen.classList.remove('active');
                 startScreen.classList.add('active');
                 currentQuestionIndex = 0;
                 score = 0;
                 answeredQuestions.clear();
-                quizModeSelect.value = 'random-10';
+                const lastSelectedMode = localStorage.getItem('lastSelectedMode') || 'random-10';
+                quizModeSelect.value = lastSelectedMode;
                 const storedIncorrectQuestions = localStorage.getItem('incorrectQuestions');
                 if (storedIncorrectQuestions) {
                     incorrectQuestions = JSON.parse(storedIncorrectQuestions);
                 }
-            };
+            });
         });
 
         restartButton.addEventListener('click', () => {
             resultScreen.classList.remove('active');
             startScreen.classList.add('active');
-            quizModeSelect.value = 'random-10';
+            const lastSelectedMode = localStorage.getItem('lastSelectedMode') || 'random-10';
+            quizModeSelect.value = lastSelectedMode;
             const storedIncorrectQuestions = localStorage.getItem('incorrectQuestions');
             if (storedIncorrectQuestions) {
                 incorrectQuestions = JSON.parse(storedIncorrectQuestions);
             }
             confettiContainer.innerHTML = '';
+        });
+
+        redoIncorrectButton.addEventListener('click', () => {
+            resultScreen.classList.remove('active');
+            quizModeSelect.value = 'incorrect'; // 苦手克服モードに設定
+            localStorage.setItem('lastSelectedMode', 'incorrect'); // モードを保存
+            prepareQuiz(); // クイズを再開
+        });
+
+        toggleExplanationButton.addEventListener('click', () => {
+            explanationContentElement.classList.toggle('show');
+            if (explanationContentElement.classList.contains('show')) {
+                toggleExplanationButton.textContent = '▲ 解説を隠す';
+            } else {
+                toggleExplanationButton.textContent = '▼ 解説を表示';
+            }
         });
 
         // ダークモードトグルイベントリスナー
@@ -1231,9 +1484,41 @@
             circle.addEventListener('click', () => {
                 themeColorCircles.forEach(c => c.classList.remove('selected'));
                 circle.classList.add('selected');
-                applyTheme(circle.dataset.theme);
+                const isDark = darkModeToggle.checked;
+                applyTheme(circle.dataset.theme, isDark);
             });
         });
+
+        // 問題数選択イベントリスナー
+        questionCountSelect.addEventListener('change', (e) => {
+            localStorage.setItem('questionCount', e.target.value);
+        });
+
+        // 進捗状況トグルイベントリスナー
+        showProgressToggle.addEventListener('change', (e) => {
+            showProgress = e.target.checked;
+            localStorage.setItem('showProgress', showProgress);
+            updateProgressBar(); // 即座に反映
+        });
+
+        // 効果音トグルイベントリスナー
+        enableSoundToggle.addEventListener('change', (e) => {
+            enableSound = e.target.checked;
+            localStorage.setItem('enableSound', enableSound);
+        });
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
 
         // 初期化処理
         document.addEventListener('DOMContentLoaded', () => {
@@ -1244,8 +1529,8 @@
                 "description": "Basic English Grammar & Structure Quiz App",
                 "start_url": "./index.html",
                 "display": "standalone",
-                "background_color": "#e0e7ff",
-                "theme_color": "#6c5ce7",
+                "background_color": "#e0e7ff", // Default light mode background
+                "theme_color": "#6c5ce7", // Default light mode primary color
                 "icons": [
                     {
                         "src": "https://placehold.co/192x192/6c5ce7/ffffff?text=BE",
@@ -1266,15 +1551,14 @@
 
             // ローカルストレージから設定を読み込み、適用
             const savedDarkMode = localStorage.getItem('darkMode');
+            const isDark = savedDarkMode === 'true';
             if (savedDarkMode !== null) {
-                const isDark = savedDarkMode === 'true';
                 darkModeToggle.checked = isDark;
-                applyDarkMode(isDark);
             }
 
             const savedThemeColor = localStorage.getItem('themeColor');
             if (savedThemeColor) {
-                applyTheme(savedThemeColor);
+                applyTheme(savedThemeColor, isDark);
                 themeColorCircles.forEach(circle => {
                     if (circle.dataset.theme === savedThemeColor) {
                         circle.classList.add('selected');
@@ -1283,6 +1567,7 @@
             } else {
                 // デフォルトテーマが選択されている状態にする
                 document.querySelector('.color-circle[data-theme="default"]').classList.add('selected');
+                applyTheme('default', isDark); // デフォルトテーマを適用
             }
             updateSettingsButtonColor(); // 初期ロード時に設定ボタンの色を更新
 
@@ -1291,6 +1576,45 @@
             if (storedIncorrectQuestions) {
                 incorrectQuestions = JSON.parse(storedIncorrectQuestions);
             }
+
+            // localStorageから前回選択されたモードを読み込み、設定
+            const lastSelectedMode = localStorage.getItem('lastSelectedMode');
+            if (lastSelectedMode) {
+                quizModeSelect.value = lastSelectedMode;
+            } else {
+                quizModeSelect.value = 'random-10'; // デフォルト
+            }
+
+            // localStorageから問題数を読み込み、設定
+            const savedQuestionCount = localStorage.getItem('questionCount');
+            if (savedQuestionCount) {
+                questionCountSelect.value = savedQuestionCount;
+                questionCount = parseInt(savedQuestionCount, 10);
+            } else {
+                questionCountSelect.value = '10'; // デフォルト
+                questionCount = 10;
+            }
+
+            // localStorageから進捗状況表示設定を読み込み、適用
+            const savedShowProgress = localStorage.getItem('showProgress');
+            if (savedShowProgress !== null) {
+                showProgress = savedShowProgress === 'true';
+                showProgressToggle.checked = showProgress;
+            } else {
+                showProgress = true; // デフォルトは表示
+                showProgressToggle.checked = true;
+            }
+
+            // localStorageから効果音設定を読み込み、適用
+            const savedEnableSound = localStorage.getItem('enableSound');
+            if (savedEnableSound !== null) {
+                enableSound = savedEnableSound === 'true';
+                enableSoundToggle.checked = enableSound;
+            } else {
+                enableSound = true; // デフォルトはオン
+                enableSoundToggle.checked = true;
+            }
+
             startScreen.classList.add('active'); // 初期画面表示
         });
     </script>
