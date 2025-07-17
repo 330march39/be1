@@ -8,6 +8,8 @@
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tone.js library for sound effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
     <style>
         /* CSS Variables for Theming */
         :root {
@@ -35,8 +37,8 @@
             --correct-feedback-border: #28a745;
             --incorrect-feedback-text: #721c24; /* Darker red for light mode */
             --incorrect-feedback-border: #dc3545;
-            --correct-option-bg: #d4edda; /* Light green for correct option */
-            --incorrect-option-bg: #f8d7da; /* Light red for incorrect option */
+            --correct-option-bg: #c8e6c9; /* Slightly more saturated light green for correct option */
+            --incorrect-option-bg: #f0b2b2; /* Slightly more saturated light red for incorrect option */
             --score-color: #1e3a8a;
             --score-comment-color: #4f46e5;
             --settings-button-bg: #3498db;
@@ -93,6 +95,7 @@
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             padding: 25px;
+            padding-top: 50px; /* Increased padding to give space at the top */
             width: 100%;
             max-width: 600px;
             text-align: center;
@@ -435,7 +438,8 @@
             box-shadow: 0 5px 15px var(--interrupt-button-shadow);
             position: absolute; /* 絶対位置指定 */
             top: 15px; /* 上からの位置 */
-            left: 15px; /* 左からの位置 */
+            right: 15px; /* Changed from left: 15px */
+            left: unset; /* Ensure left is not set */
             padding: 8px 15px; /* パディングを小さく */
             font-size: 0.8rem; /* フォントサイズを小さく */
             z-index: 10; /* 他の要素より手前に */
@@ -833,7 +837,7 @@
             { id: '7-14', lesson: 'GS_I-7', text: "Kate speaks English very fast. I've never heard English ______ so quickly.", hint: "(英語がそんなに速く話されるのを聞いたことがない。)", options: ["speak", "to speak", "speaking", "spoken"], answer: "spoken", explanation: "'hear + A + -ed' で「Aが〜されるのが聞こえる」を意味します。'hear + A + -ing' は「Aが〜しているのを聞く」です。例: I've never heard him speaking English.（彼が英語を話すのを聞いたことがない）" },
             { id: '7-15', lesson: 'GS_I-7', text: "The manager kept me ______ outside his office.", hint: "(私を待たせた)", options: ["wait", "to wait", "waiting", "waited"], answer: "waiting", explanation: "'keep + ... + -ing' で「...を〜している状態にする」を意味します。" },
             { id: '7-16', lesson: 'GS_I-7', text: "I kept my dog ______ to a tree in the garden.", hint: "(犬を(庭の木に) つながれた状態にしておいた)", options: ["tie", "to tie", "tying", "tied"], answer: "tied", explanation: "'keep + ... + -ed' で「...を〜された状態にする」を意味します。" },
-            { id: '7-17', lesson: 'GS_I-7', text: "I want this luggage ______ to my room at once.", hint: "(荷物を(私の部屋に) 運ばれて欲しい)", options: ["take", "to take", "taking", "taken"], answer: "taken", explanation: "'want + A + -ed' で「Aが〜されて欲しい（〜された状態になって欲しい）」を意味します。" },
+            { id: '7-17', lesson: "GS_I-7", text: "I want this luggage ______ to my room at once.", hint: "(荷物を(私の部屋に) 運ばれて欲しい)", options: ["take", "to take", "taking", "taken"], answer: "taken", explanation: "'want + A + -ed' で「Aが〜されて欲しい（〜された状態になって欲しい）」を意味します。" },
             { id: '7-18', lesson: 'GS_I-7', text: "It is not a good idea to spend your time ______ TV.", hint: "(TVを見ながら (時間を過ごす))", options: ["watch", "to watch", "watching", "watched"], answer: "watching", explanation: "'spend A -ing' で「〜しながらAを過ごす」を意味します。例: I spent last three hours doing my homework.（私はこの3時間、宿題をしながら過ごした）" },
 
             // GS_I-8 (仮定法)
@@ -902,9 +906,11 @@
         let showProgress = true; // 進捗状況表示のオン/オフ
         let enableSound = true; // 効果音のオン/オフ
 
-        // サウンドオブジェクト
-        const correctSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3'); // 例: 短い成功音
-        const incorrectSound = new Audio('https://www.soundjay.com/buttons/sounds/button-9.mp3'); // 例: 短い失敗音
+        // Tone.js サウンドオブジェクトの初期化
+        // Tone.js はユーザーの最初のインタラクションでオーディオコンテキストを起動する必要があるため、
+        // ここではシンセサイザーを定義するだけにし、`startButton` クリック時に `Tone.start()` を呼び出す
+        const correctSound = new Tone.Synth().toDestination();
+        const incorrectSound = new Tone.Synth().toDestination();
 
         // 画面要素の取得
         const startScreen = document.getElementById('startScreen');
@@ -998,8 +1004,8 @@
                     '--feedback-bg': '#fdfdfd', '--feedback-border': '#e0e0e0',
                     '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
                     '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545',
-                    '--correct-option-bg': '#d4edda',
-                    '--incorrect-option-bg': '#f8d7da',
+                    '--correct-option-bg': '#c8e6c9', /* Slightly more saturated light green for correct option */
+                    '--incorrect-option-bg': '#f0b2b2', /* Slightly more saturated light red for incorrect option */
                     '--score-color': '#1e3a8a', '--score-comment-color': '#4f46e5',
                     '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9'
                 },
@@ -1117,7 +1123,7 @@
                     '--correct-feedback-text': '#d4edda', '--correct-feedback-border': '#28a745',
                     '--incorrect-feedback-text': '#f8d7da', '--incorrect-feedback-border': '#dc3545',
                     '--correct-option-bg': '#8b5030',
-                    '--incorrect-option-bg': '#a96040',
+                    '--incorrect-option-bg': '#a94040',
                     '--score-color': '#fff0e0', '--score-comment-color': '#f39c12',
                     '--settings-button-bg': '#2980b9', '--settings-button-hover-bg': '#2471a3'
                 }
@@ -1158,7 +1164,13 @@
         }
 
         // クイズモードを設定し、問題を準備する関数
-        function prepareQuiz() {
+        async function prepareQuiz() { // Made async to await Tone.start()
+            // Resume audio context on first user interaction
+            if (Tone.context.state !== 'running') {
+                await Tone.start();
+                console.log('Audio context resumed!');
+            }
+
             currentMode = quizModeSelect.value;
             localStorage.setItem('lastSelectedMode', currentMode); // 選択されたモードを保存
             questionCount = parseInt(questionCountSelect.value, 10); // 問題数を取得
@@ -1286,14 +1298,14 @@
                 score++;
                 isCorrect = true;
                 incorrectQuestions = incorrectQuestions.filter(id => id !== questionId);
-                if (enableSound) correctSound.play(); // 効果音再生
+                if (enableSound) correctSound.triggerAttackRelease("G5", "8n"); // "Ping-pong" sound
             } else {
                 feedbackMessageElement.innerHTML = `<strong>不正解...</strong> 正解は「${correctAnswer}」でした。`;
                 feedbackMessageElement.classList.add('incorrect-feedback');
                 if (!incorrectQuestions.includes(questionId)) {
                     incorrectQuestions.push(questionId);
                 }
-                if (enableSound) incorrectSound.play(); // 効果音再生
+                if (enableSound) incorrectSound.triggerAttackRelease("C3", "4n"); // "Buh-buh" sound
             }
             answeredQuestions.add(questionId);
 
