@@ -481,6 +481,24 @@
             height: 12px;
             background-color: #f06;
             opacity: 0;
+            animation-name: confetti-burst;
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes confetti-burst {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(-40vh) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
         }
         .confetti:nth-child(2n) { background-color: #6cf; }
         .confetti:nth-child(3n) { background-color: #fc0; }
@@ -904,22 +922,19 @@
 
         // --- Sound Effect Setup ---
         const sounds = {
-            correct: new Tone.PolySynth(Tone.Synth, { volume: -8 }).toDestination(),
+            correct: new Tone.Synth({ volume: -12, oscillator: { type: 'sine' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination(),
             incorrect: new Tone.FMSynth({ volume: 0, harmonicity: 1.5, modulationIndex: 10, oscillator: { type: "sawtooth" }, envelope: { attack: 0.01, decay: 0.3, sustain: 0.01, release: 0.1 } }).toDestination(),
             click: new Tone.Synth({ volume: -15, oscillator: { type: 'triangle' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.01, release: 0.1 } }).toDestination(),
-            fanfare: new Tone.PolySynth(Tone.Synth, { volume: -5 }).toDestination(),
+            fanfare: new Tone.PolySynth(Tone.Synth, { volume: -10 }).toDestination(),
             applause: new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 0.01, decay: 0.8, sustain: 0.1 } }).toDestination()
         };
-        const correctNotes = [["G4", "C5", "E5"], ["A4", "D5", "F#5"], ["B4", "E5", "G#5"]];
-        let correctNoteIndex = 0;
 
         function playSound(type) {
             if (!enableSound || Tone.context.state !== 'running') return;
             const now = Tone.now();
             switch (type) {
                 case 'correct':
-                    sounds.correct.triggerAttackRelease(correctNotes[correctNoteIndex % 3], '16n', now);
-                    correctNoteIndex++;
+                    sounds.correct.triggerAttackRelease("C5", "8n", now);
                     break;
                 case 'incorrect':
                     sounds.incorrect.triggerAttackRelease("A2", "8n", now);
@@ -928,8 +943,10 @@
                     sounds.click.triggerAttackRelease("C6", "16n", now);
                     break;
                 case 'fanfare':
-                    sounds.fanfare.triggerAttackRelease(["C4", "E4", "G4", "C5"], "2n", now);
-                    sounds.fanfare.triggerAttackRelease(["G4", "B4", "D5", "G5"], "2n", now + 0.5);
+                    const fanfareNotes = ["C5", "E5", "G5", "C6"];
+                    fanfareNotes.forEach((note, i) => {
+                        sounds.fanfare.triggerAttackRelease(note, "8n", now + i * 0.15);
+                    });
                     for (let i = 0; i < 10; i++) {
                         sounds.applause.triggerAttackRelease("4n", now + i * 0.1 + 0.2);
                     }
@@ -993,14 +1010,21 @@
             }
         }
 
-        const themes = { 'default':{light:{'--bg-primary':'#e0e7ff','--bg-secondary':'#ffffff','--text-primary':'#2c3e50','--text-secondary':'#7f8c8d','--button-bg-default':'#f0f4f8','--button-text-default':'#34495e','--button-border-default':'#dbe2ef','--nav-button-bg':'#6c5ce7','--nav-button-hover-bg':'#5a4acb','--nav-button-shadow':'rgba(108, 92, 231, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#6c5ce7','--feedback-bg':'#fdfdfd','--feedback-border':'#e0e0e0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#c8e6c9','--incorrect-option-bg':'#f0b2b2','--score-color':'#1e3a8a','--score-comment-color':'#4f46e5','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'red':{light:{'--bg-primary':'#ffe0e0','--bg-secondary':'#ffffff','--text-primary':'#4a1a1a','--text-secondary':'#8b4545','--button-bg-default':'#f8e0e0','--button-text-default':'#4a1a1a','--button-border-default':'#f0c0c0','--nav-button-bg':'#e74c3c','--nav-button-hover-bg':'#c0392b','--nav-button-shadow':'rgba(231, 76, 60, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#6c5ce7','--interrupt-button-hover-bg':'#5a4acb','--interrupt-button-shadow':'rgba(108, 92, 231, 0.3)','--progress-bar-bg':'#e74c3c','--feedback-bg':'#fffafa','--feedback-border':'#f0d0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e0e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#c0392b','--score-comment-color':'#e74c3c','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'green':{light:{'--bg-primary':'#e0ffe0','--bg-secondary':'#ffffff','--text-primary':'#1a4a1a','--text-secondary':'#458b45','--button-bg-default':'#e0f8e0','--button-text-default':'#1a4a1a','--button-border-default':'#c0f0c0','--nav-button-bg':'#2ecc71','--nav-button-hover-bg':'#27ae60','--nav-button-shadow':'rgba(46, 204, 113, 0.3)','--start-button-bg':'#6c5ce7','--start-button-hover-bg':'#5a4acb','--start-button-shadow':'rgba(108, 92, 231, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#2ecc71','--feedback-bg':'#fafffa','--feedback-border':'#d0f0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#e0f8e0','--incorrect-option-bg':'#f0c0c0','--score-color':'#27ae60','--score-comment-color':'#2ecc71','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}},'orange':{light:{'--bg-primary':'#fff0e0','--bg-secondary':'#ffffff','--text-primary':'#4a301a','--text-secondary':'#8b6a45','--button-bg-default':'#f8e8e0','--button-text-default':'#4a301a','--button-border-default':'#f0e0c0','--nav-button-bg':'#f39c12','--nav-button-hover-bg':'#e67e22','--nav-button-shadow':'rgba(243, 156, 18, 0.3)','--start-button-bg':'#2ecc71','--start-button-hover-bg':'#27ae60','--start-button-shadow':'rgba(46, 204, 113, 0.3)','--interrupt-button-bg':'#e74c3c','--interrupt-button-hover-bg':'#c0392b','--interrupt-button-shadow':'rgba(231, 76, 60, 0.3)','--progress-bar-bg':'#f39c12','--feedback-bg':'#fffaf0','--feedback-border':'#f0e0d0','--correct-feedback-text':'#1a5e20','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#721c24','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#f8e8e0','--incorrect-option-bg':'#f0e0c0','--score-color':'#e67e22','--score-comment-color':'#f39c12','--settings-button-bg':'#3498db','--settings-button-hover-bg':'#2980b9','--settings-button-shadow':'rgba(52, 152, 219, 0.3)'}} };
-        const darkThemeColors = { '--bg-primary':'#1a1a2e','--bg-secondary':'#212a3d','--text-primary':'#e0e7ff','--text-secondary':'#9bb0d9','--button-bg-default':'#3a4a5c','--button-text-default':'#e0e7ff','--button-border-default':'#5c708a','--nav-button-bg':'#6a3a82','--nav-button-hover-bg':'#5a306e','--nav-button-shadow':'rgba(106, 58, 130, 0.3)','--start-button-bg':'#1e8247','--start-button-hover-bg':'#1a6e3c','--start-button-shadow':'rgba(30, 130, 71, 0.3)','--interrupt-button-bg':'#a93226','--interrupt-button-hover-bg':'#922a1f','--interrupt-button-shadow':'rgba(169, 50, 38, 0.3)','--progress-bar-bg':'#6a3a82','--feedback-bg':'#324054','--feedback-border':'#4a5a6e','--correct-feedback-text':'#c8e6c9','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f0b2b2','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#2d6a4a','--incorrect-option-bg':'#8c3b3b','--score-color':'#e0e7ff','--score-comment-color':'#b886d9','--settings-button-bg':'#2471a3','--settings-button-hover-bg':'#1f608a','--settings-button-shadow':'rgba(36, 113, 163, 0.3)' };
+        const themes = {
+            'default': { light: { '--nav-button-bg': '#6c5ce7', '--nav-button-hover-bg': '#5a4acb', '--nav-button-shadow': 'rgba(108, 92, 231, 0.3)', '--progress-bar-bg': '#6c5ce7' } },
+            'red': { light: { '--nav-button-bg': '#e74c3c', '--nav-button-hover-bg': '#c0392b', '--nav-button-shadow': 'rgba(231, 76, 60, 0.3)', '--progress-bar-bg': '#e74c3c' } },
+            'green': { light: { '--nav-button-bg': '#2ecc71', '--nav-button-hover-bg': '#27ae60', '--nav-button-shadow': 'rgba(46, 204, 113, 0.3)', '--progress-bar-bg': '#2ecc71' } },
+            'orange': { light: { '--nav-button-bg': '#f39c12', '--nav-button-hover-bg': '#e67e22', '--nav-button-shadow': 'rgba(243, 156, 18, 0.3)', '--progress-bar-bg': '#f39c12' } }
+        };
 
         function applyColors(themeName, isDark) {
             const root = document.documentElement;
-            const colorsToApply = isDark ? darkThemeColors : (themes[themeName]?.light || themes.default.light);
-            for (const [prop, value] of Object.entries(colorsToApply)) {
-                root.style.setProperty(prop, value);
+            if (isDark) {
+                Object.entries(darkThemeColors).forEach(([prop, value]) => root.style.setProperty(prop, value));
+            } else {
+                Object.entries(themes.default.light).forEach(([prop, value]) => root.style.setProperty(prop, value)); // Reset to default light first
+                const theme = themes[themeName]?.light || themes.default.light;
+                Object.entries(theme).forEach(([prop, value]) => root.style.setProperty(prop, value));
             }
         }
 
@@ -1181,23 +1205,10 @@
             for (let i = 0; i < 80; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
-                confetti.style.left = (45 + Math.random() * 10) + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                const xEnd = Math.random() * 250 - 125;
-                const yEnd = -200 - (Math.random() * 150);
-                const rotation = Math.random() * 720 - 360;
-
-                const animation = confetti.animate([
-                    { transform: `translate(0, 0) rotate(0)`, opacity: 1 },
-                    { transform: `translate(${xEnd * 0.5}px, ${yEnd}px) rotate(${rotation}deg)`, opacity: 1 },
-                    { transform: `translate(${xEnd}px, 100vh) rotate(${rotation * 2}deg)`, opacity: 0 }
-                ], {
-                    duration: 2500 + Math.random() * 1500,
-                    easing: 'cubic-bezier(0.1, 0.5, 0.5, 1)',
-                    delay: Math.random() * 200
-                });
-                animation.onfinish = () => confetti.remove();
+                confetti.style.left = (20 + Math.random() * 60) + '%';
+                confetti.style.backgroundColor = colors[i % colors.length];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = 2 + Math.random() * 1.5 + 's';
                 confettiContainer.appendChild(confetti);
             }
         }
