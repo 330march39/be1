@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEⅠ GS Quiz</title>
-    <!-- PWA manifest link -->
-    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Tone.js library for sound effects -->
@@ -696,7 +694,7 @@
     </div>
 
     <script>
-        // 問題データ (省略 - 元のコードと同じ)
+        // 問題データ
         const allQuestions = [
             // GS_I-1 (名詞・代名詞)
             { id: '1-1', lesson: 'GS_I-1', text: "There was ______ on television this morning about e-sports.", hint: "(1つのとても面白いニュース)", options: ["a very interesting news", "very interesting news", "a piece of very interesting news", "many interesting news"], answer: "a piece of very interesting news", explanation: "newsのような不可算名詞を数えるときには 'a piece of~' を使います。2つだったら 'two pieces of -' となります。他の不可算名詞の例: a piece of information, two pieces of furniture, three pieces of advice" },
@@ -715,6 +713,8 @@
             { id: '1-14', lesson: 'GS_I-1', text: "There are four reasons for our decisions. You know two of them, so I'll tell you ______.", hint: "(他のもの)", options: ["other", "the other", "others", "the others"], answer: "the others", explanation: "'two of them' は 'four reasons' のことです。これはすでに特定された情報なので、特定の残りのものを現したい時は 'the others' を使います。特定の残りのものが単数だったら 'the other' です。例: We have two children. One is in Tokyo, and the other is in Osaka." },
             { id: '1-15', lesson: 'GS_I-1', text: "Values differ ______.", hint: "(人によって)", options: ["by person", "from person to person", "from one person to another", "between people"], answer: "from one person to another", explanation: "'from one to another' で「〜によって」という意味になります。例: 国によって（異なる）: differ from one country to another" },
             { id: '1-16', lesson: 'GS_I-1', text: "______ passed the examination.", hint: "(ほとんどの学生)", options: ["Most of students", "Almost students", "Most of the students", "Almost all students"], answer: "Most of the students", explanation: "'most of' は「ほとんどの〜」を意味します。'most of' の後は 'us' や 'them' のような複数形代名詞か 'the + 複数形' が基本です。'almost' は副詞なので 'almost of' とは言えません。'almost' を使いたい時は 'all' を補って、'almost all of the books' のように言います。" },
+
+            // GS_I-2 (冠詞、形容詞・副詞)
             { id: '2-1', lesson: 'GS_I-2', text: "I visit my grandparents ______.", hint: "(週に2回)", options: ["two times a week", "twice a week", "two weekly", "every two weeks"], answer: "twice a week", explanation: "'twice a week' は「週に2回」を意味します。'once every three weeks' は「3週間に1回」です。" },
             { id: '2-2', lesson: 'GS_I-2', text: "Rice is sold ______.", hint: "(kg 単位で)", options: ["by kilogram", "by the kilogram", "in kilogram", "with kilogram"], answer: "by the kilogram", explanation: "'by the 単位' で「〜単位で」を意味します。例: Part time jobs are usually paid by the hour.（アルバイトは通常時給(時間単位)で払われる。）" },
             { id: '2-3', lesson: 'GS_I-2', text: "Ann ______ when she learned the results of the medical exam.", hint: "(嬉しく感じた)", options: ["felt happy", "felt happily", "was feeling happy", "happy felt"], answer: "felt happy", explanation: "'feel + 形容詞' の形を使います。例: feel sad, feel good, feel sick, feel smooth。'look happy, look sad, taste good, sound strange, keep quiet' なども同様です。" },
@@ -735,13 +735,15 @@
             { id: '2-18', lesson: 'GS_I-2', text: "We found only ______ customers in the store.", hint: "(少数の客)", options: ["small number of", "a small number of", "few", "a few"], answer: "a small number of", explanation: "'number' には 'small / large' を使います。例: The number of customers in the store was small. 'a large number of' は「多数の〜」です。" },
             { id: '2-19', lesson: 'GS_I-2', text: "Nowadays, some students seek for a job that gives them more free time, rather than ______.", hint: "(高い給料ではなく)", options: ["a high salary", "a big salary", "a tall salary", "a large salary"], answer: "a high salary", explanation: "'salary' や 'price' は 'high/low' を使います。'expensive / cheap' は使いません。" },
             { id: '2-20', lesson: 'GS_I-2', text: "I thought it was a good book, but Jim thought ______.", hint: "(ちがったふうに)", options: ["different", "differently", "otherwise", "other"], answer: "otherwise", explanation: "'otherwise' は「ちがったふうに、別の方法で」を意味します。" },
+
+            // GS_I-3 (動詞,助動詞 時制)
             { id: '3-1', lesson: 'GS_I-3', text: "I'll ______ the matter with my boss.", hint: "(その件について議論する)", options: ["discuss about", "discuss", "discuss with", "discuss on"], answer: "discuss", explanation: "'discuss' は他動詞なので、'about' などの前置詞は不要です。他に 'consult a dictionary, reach the destination, approach the problem, mention the matter, question the results, answer questions, resemble this picture' などがあります。" },
             { id: '3-2', lesson: 'GS_I-3', text: "Please ______ for a few minutes.", hint: "(席に) 座ったままの状態でいる)", options: ["remain seating", "remain to seat", "remain seated", "remain to be seated"], answer: "remain seated", explanation: "'remain + 補語（形容詞、過去分詞、現在分詞）' の形を使います。例: remain silent, remain shocked, remain standing。" },
             { id: '3-3', lesson: 'GS_I-3', text: "He ______ the book on the desk.", hint: "(本を置いた)", options: ["lay", "lied", "laid", "lain"], answer: "laid", explanation: "'laid' は 'lay'「横たえる、置く（他動詞）」の過去形です。'lay-laid-laid - laying'。'lie-lay-lain - lying' は「横たわる（自動詞）」です。" },
             { id: '3-4', lesson: 'GS_I-3', text: "War doesn't ______ anybody happy.", hint: "(誰も幸せにはしない)", options: ["make", "let", "have", "get"], answer: "make", explanation: "'make + 目的語 + 補語（形容詞・過去分詞など）' で「〜を...にする」を意味します。例: The story told by an astronaut made me inspired." },
             { id: '3-5', lesson: 'GS_I-3', text: "I'm sure you will ______ the book interesting.", hint: "(その本を面白く感じるだろう)", options: ["find", "think", "feel", "make"], answer: "find", explanation: "'find + 目的語 + 補語（現在分詞・過去分詞・形容詞・名詞など）' の形を使います。例: When we opened the door, we found the room empty." },
             { id: '3-6', lesson: 'GS_I-3', text: "My parents never ______ me to swim alone in the sea.", hint: "(私がひとりで泳ぐことを許す)", options: ["let", "made", "allowed", "had"], answer: "allowed", explanation: "'allow + 人 + to不定詞' の形を使います。他に 'ask/tell/order/advise' などがあります。" },
-            { id: '3-7', lesson: 'GS_I-3', text: "We ______ to go to the same school.", hint: "(かつては同じ学校に通っていた)", options: ["used", "are used", "were used", "used to"], answer: "used to", explanation: "'used to 不定詞' で「以前、〜していた」を意味します。" },
+            { id: '3-7', lesson: 'GS_I-3', text: "We ______ to go to the same school.", hint: "(かつては同じ学校に通っていた)", options: ["used", "are used", "were used", "used to"], answer: "used", explanation: "'used to + 動詞の原形' で「以前は〜していた」という意味になります。問題文にはすでに 'to' が含まれているため、'used' を選ぶのが正解です。" },
             { id: '3-8', lesson: 'GS_I-3', text: "This copy machine ______ work. What's wrong?", hint: "(どうしても作動しない)", options: ["doesn't", "won't", "can't", "isn't"], answer: "won't", explanation: "'won't 動詞' で「どうしても〜しない（してくれない）」を意味します。例: He wouldn't listen to me.（どうしても私の話を聞いてくれなかった。）" },
             { id: '3-9', lesson: 'GS_I-3', text: "I ______ have reported it to the police, but I didn't.", hint: "(そのことを通報するべきだった)", options: ["must", "would", "should", "could"], answer: "should", explanation: "'should have + 過去分詞' で「〜すべきだった」を意味します。" },
             { id: '3-10', lesson: 'GS_I-3', text: "I ______ lunch when the phone rang.", hint: "(ちょうどお昼を食べているところだった)", options: ["ate", "had eaten", "was eating", "have eaten"], answer: "was eating", explanation: "過去の特定の瞬間（'the phone rang'）に進行していた動作なので、過去進行形を使います。" },
@@ -755,6 +757,8 @@
             { id: '3-18', lesson: 'GS_I-3', text: "I ______ my homework by the time my friends come to see me.", hint: "(終わらせているだろう)", options: ["will finish", "will have finished", "have finished", "am finishing"], answer: "will have finished", explanation: "未来の特定の時までに「完了」していることを表現するには未来完了形を使います。例: by the time my friends come to see me, by the end of March。" },
             { id: '3-19', lesson: 'GS_I-3', text: "The snow ______ by the end of March.", hint: "(消えているだろう)", options: ["will disappear", "will have disappeared", "has disappeared", "disappears"], answer: "will have disappeared", explanation: "未来の特定の時までに「完了」していることを表現するには未来完了形を使います。" },
             { id: '3-20', lesson: 'GS_I-3', text: "In the English language, many words ______ letters which are not pronounced.", hint: "(含んでいる)", options: ["contain", "contains", "are containing", "contained"], answer: "contain", explanation: "普遍の事実（いつの時も変わらない事実）は現在形で表します。" },
+
+            // GS_I-4 (動名詞の構文・関係詞の構文)
             { id: '4-1', lesson: 'GS_I-4', text: "On ______ at the train station, I found that the train was being delayed.", hint: "(駅に着くとすぐに)", options: ["arrive", "arrived", "arriving", "to arrive"], answer: "arriving", explanation: "'on -ing' で「〜するとすぐに」を意味します。" },
             { id: '4-2', lesson: 'GS_I-4', text: "He had no difficulty ______ the place.", hint: "(その場所を見つけることにおいて)", options: ["to find", "in finding", "find", "finding"], answer: "in finding", explanation: "'in -ing' で「〜するときに、〜する際に、〜することにおいて」を意味します。" },
             { id: '4-3', lesson: 'GS_I-4', text: "Holmes went out ______ noticed.", hint: "(気づかれることなく)", options: ["without notice", "without being noticed", "not noticed", "without noticing"], answer: "without being noticed", explanation: "'without -ing' で「〜しないで、〜せずに」を意味します。" },
@@ -771,6 +775,8 @@
             { id: '4-14', lesson: 'GS_I-4', text: "He was the only student ______ solved the problem.", hint: "(その問題を解いた唯一の学生だった)", options: ["who", "which", "that", "whom"], answer: "that", explanation: "'the only S' that V'' の形を使います。'only, the same, the very, all, any, no' などを伴う場合には 'that' を使うのが通例です。" },
             { id: '4-15', lesson: 'GS_I-4', text: "That is ______ he got out of danger.", hint: "(どのように彼が危機を脱したのか)", options: ["what", "which", "how", "why"], answer: "how", explanation: "'how S + V' で「どのようにSがVしたのか」を意味します。" },
             { id: '4-16', lesson: 'GS_I-4', text: "This is ______ I raised this question again.", hint: "(なぜ、もう一度、質問をしたのか)", options: ["how", "what", "why", "that"], answer: "why", explanation: "'why S + V' で「なぜSがVしたのか」を意味します。" },
+
+            // GS_I-5 (不定詞の構文)
             { id: '5-1', lesson: 'GS_I-5', text: "There is no need ______ for you to wait for me.", hint: "(あなたは私のために待つ必要はない。)", options: ["to", "that", "for", "of"], answer: "for", explanation: "'There is no need for... to~' で「...が〜する必要はない」を意味します。" },
             { id: '5-2', lesson: 'GS_I-5', text: "We ______ to come across each other at the station.", hint: "(私たちはたまたま駅で会った。)", options: ["happened", "managed", "chanced", "occurred"], answer: "happened", explanation: "'We happened to~' で「私たちはたまたま〜した」を意味します。" },
             { id: '5-3', lesson: 'GS_I-5', text: "The circumstances seem ______ no way out.", hint: "(全く出口を示してはいないようだ)", options: ["to indicate", "indicating", "to be indicated", "indicate"], answer: "to indicate", explanation: "'seem to~' で「〜であるようだ」を意味します。'It seems that the circumstances indicate no way out.' とも言えます。" },
@@ -791,6 +797,8 @@
             { id: '5-18', lesson: 'GS_I-5', text: "I don't know ______ to express my apology.", hint: "(どのように表現するべきか)", options: ["what", "which", "where", "how"], answer: "how", explanation: "'how to~' で「どのように〜するべきか」を意味します。" },
             { id: '5-19', lesson: 'GS_I-5', text: "We are ______ up at the station and start heading for Mt. Takao.", hint: "(駅で待ち合わせて、高尾山に向かうはずなのだ)", options: ["meet", "to meet", "meeting", "met"], answer: "to meet", explanation: "'be動詞 + to~' で「〜するべきである、〜するはずである」を意味します。" },
             { id: '5-20', lesson: 'GS_I-5', text: "To make matters ______, I forgot my smartphone in the train.", hint: "(さらに悪いことに)", options: ["bad", "worse", "worst", "badly"], answer: "worse", explanation: "'To make matters worse' で「さらに悪いことには」を意味します。" },
+
+            // GS_I-6 (時を表す構文、否定を表す構文)
             { id: '6-1', lesson: 'GS_I-6', text: "I have just ______ to the supermarket to get some milk.", hint: "(たった今、スーパーに行ってきたところ)", options: ["gone", "been", "went", "go"], answer: "been", explanation: "'just' は 'have' と 'been' の間に入り、「たった今、〜してきた」を意味します。" },
             { id: '6-2', lesson: 'GS_I-6', text: "My sister has lived in the US ______ ten years.", hint: "(10年以上ものあいだ)", options: ["over", "more than", "for more than", "since more than"], answer: "for more than", explanation: "'for more than' で「〜以上ものあいだ」を意味します。" },
             { id: '6-3', lesson: 'GS_I-6', text: "The bakery has been open ______ a week, and look how popular it is!", hint: "(開店してからまだ1週間も経っていないのに)", options: ["for no more than", "no more than", "not more than", "less than"], answer: "for no more than", explanation: "'〜（現在完了） for no more than ...' で「〜してから... も経っていない」を意味します。" },
@@ -807,6 +815,8 @@
             { id: '6-14', lesson: 'GS_I-6', text: "What you are saying is not wrong, but ______ of us approve of it.", hint: "(我々の全ての人間が認めているわけではない)", options: ["all", "not all", "none", "every"], answer: "not all", explanation: "'not all of ...' で「必ずしも全ての...が〜しているわけではない」を意味します。'not all' は複数扱い（x not all of us approves）です。" },
             { id: '6-15', lesson: 'GS_I-6', text: "______ of the candidates was qualified for the job.", hint: "(どの候補もその仕事に充分な能力がなかった)", options: ["All", "None", "Neither", "Every"], answer: "None", explanation: "'None of ...' で「...のうちのどれも〜していなかった」を意味します。'none of ...' は単数扱い（x None of the candidates were）です。" },
             { id: '6-16', lesson: 'GS_I-6', text: "Not only my keys but also my smartphone ______ missing.", hint: "(鍵だけでなくスマートフォンまでなくなっていた)", options: ["were", "are", "was", "is"], answer: "was", explanation: "'Not only A but also B' では、動詞はBに従う形になります。例: Not only he but also I am coming to see you." },
+
+            // GS_I-7 (分詞)
             { id: '7-1', lesson: 'GS_I-7', text: "The young woman ______ in the corner is Mary Smith.", hint: "(すみに立っている若い女性)", options: ["stand", "standing", "stood", "to stand"], answer: "standing", explanation: "'A（名詞） + -ing' で「〜しているA」を意味します。" },
             { id: '7-2', lesson: 'GS_I-7', text: "There is three thousand dollars ______ in my back account.", hint: "(3000 ドル残っている)", options: ["left", "leaving", "to leave", "leaves"], answer: "left", explanation: "'There is -ed (または -ing)' で「〜が〜された（〜している）状態になっている」を意味します。例: There is some chicken frozen in the refrigerator.（冷蔵庫に鶏肉が凍っている）, There are some people waiting in the other room.（別の部屋で何人かの人が待っている）。" },
             { id: '7-3', lesson: 'GS_I-7', text: "I was very ______ to meet a famous actress at the party.", hint: "(とても興奮した)", options: ["exciting", "excited", "excite", "to excite"], answer: "excited", explanation: "人が主語の場合は 'be excited'、ものが主語の場合は 'be exciting' です。例: surprised, disappointed, interested, tired。" },
@@ -825,6 +835,8 @@
             { id: '7-16', lesson: 'GS_I-7', text: "I kept my dog ______ to a tree in the garden.", hint: "(犬を(庭の木に) つながれた状態にしておいた)", options: ["tie", "to tie", "tying", "tied"], answer: "tied", explanation: "'keep + ... + -ed' で「...を〜された状態にする」を意味します。" },
             { id: '7-17', lesson: "GS_I-7", text: "I want this luggage ______ to my room at once.", hint: "(荷物を(私の部屋に) 運ばれて欲しい)", options: ["take", "to take", "taking", "taken"], answer: "taken", explanation: "'want + A + -ed' で「Aが〜されて欲しい（〜された状態になって欲しい）」を意味します。" },
             { id: '7-18', lesson: 'GS_I-7', text: "It is not a good idea to spend your time ______ TV.", hint: "(TVを見ながら (時間を過ごす))", options: ["watch", "to watch", "watching", "watched"], answer: "watching", explanation: "'spend A -ing' で「〜しながらAを過ごす」を意味します。例: I spent last three hours doing my homework.（私はこの3時間、宿題をしながら過ごした）" },
+
+            // GS_I-8 (仮定法)
             { id: '8-1', lesson: 'GS_I-8', text: "If I ______ you, I wouldn't buy that car.", hint: "(もし私があなたなら、私はその車を買わない。)", options: ["am", "was", "were", "would be"], answer: "were", explanation: "「仮定法過去」は現在の事実と反対のことを仮定するときに使います。" },
             { id: '8-2', lesson: 'GS_I-8', text: "He probably wouldn't act that way if he ______ in Japan.", hint: "(もし彼が日本にいたら、彼はたぶん、そんな行動はとらないだろう。)", options: ["is", "was", "were", "had been"], answer: "were", explanation: "「仮定法過去」です。" },
             { id: '8-3', lesson: 'GS_I-8', text: "If I ______ to go abroad, I would go to France.", hint: "(もし私が海外に行くとしたら、私はフランスに行きたい。)", options: ["am", "was", "were", "should"], answer: "were", explanation: "'were to... would...' は実現する可能性が少ないことについての仮定するときに使います。" },
@@ -840,6 +852,8 @@
             { id: '8-13', lesson: 'GS_I-8', text: "It was you who suggested that I ______ the truth.", hint: "(彼に本当のことを伝えるべきだと提案したのはあなただった。)", options: ["tell", "told", "should tell", "telling"], answer: "tell", explanation: "'suggest that S + (should) 動詞の原形' の形を使います。他に 'propose/demand/request/order/insist' などがあります。" },
             { id: '8-14', lesson: 'GS_I-8', text: "The woman demanded that she ______ a refund.", hint: "(その女性は払い戻しがされるように要求した。)", options: ["is given", "be given", "was given", "to be given"], answer: "be given", explanation: "前の問題と同様に 'demand that S + (should) 動詞の原形' の形を使いますが、ここでは受動態になっています。" },
             { id: '8-15', lesson: 'GS_I-8', text: "I proposed that we ______ home early today.", hint: "(私は今日は早く家に帰ろうと提案した。)", options: ["go", "went", "should go", "going"], answer: "go", explanation: "前の問題と同様に 'propose that S + (should) 動詞の原形' の形を使います。" },
+
+            // GS_I-9 (比較)
             { id: '9-1', lesson: 'GS_I-9', text: "You are ______ to gain weight in summer than in winter.", hint: "(冬よりも夏の方が、体重が増える傾向が少ない。)", options: ["less likely", "more likely", "likely", "least likely"], answer: "less likely", explanation: "'be less likely to~' で「〜する傾向が少ない（〜しにくい）」を意味します。比較級なので 'than' で比較対象を示します。" },
             { id: '9-2', lesson: 'GS_I-9', text: "She is ______ gentle than kind.", hint: "(「親切」というよりは「やさしい」。)", options: ["kind", "more", "most", "less"], answer: "more", explanation: "'more A than B' で「BというよりはAだ」を意味します。" },
             { id: '9-3', lesson: 'GS_I-9', text: "The ______ half of the program was interesting.", hint: "(プログラムの後半半分は)", options: ["later", "last", "latter", "latest"], answer: "latter", explanation: "'latter half' で「後半半分」を意味します。" },
@@ -855,6 +869,8 @@
             { id: '9-13', lesson: 'GS_I-9', text: "I have never heard a more ______ story than this.", hint: "(私はこれまで、これ以上にワクワクする話を聞いたことがない。)", options: ["exciting", "excited", "excite", "excitement"], answer: "exciting", explanation: "'a more 形容詞 名詞 than~' で「〜以上に〜なものをしたことがない」を意味します。" },
             { id: '9-14', lesson: 'GS_I-9', text: "I think that no other job is ______ dangerous than a cab driver in New York City.", hint: "(New York City で運転手をするほど危ない仕事は他にはない)", options: ["most", "more", "much", "very"], answer: "more", explanation: "'no other ~ is more ... than ---' で「---ほど〜な...は他にはない」を意味します。" },
             { id: '9-15', lesson: 'GS_I-9', text: "The ______ he heard about it, the ______ he got.", hint: "(彼はそれを聞けば聞くほど、より興味を持っていった。)", options: ["more / more interested", "most / most interested", "much / much interested", "more / interested"], answer: "more / more interested", explanation: "'The more S + V, the more S' + V'' で「SがVすればするほど、よりSはVしていった」を意味します。" },
+
+            // GS_I-10 (接続詞)
             { id: '10-1', lesson: 'GS_I-10', text: "It all depends on ______ they will support us.", hint: "(すべては彼らが援助してくれるのかによる。)", options: ["if", "that", "whether", "what"], answer: "whether", explanation: "「〜かどうか」は 'whether' を使います。（'if' では言い換えられない場合があるので注意！）" },
             { id: '10-2', lesson: 'GS_I-10', text: "We do not appreciate our health ______ we get sick.", hint: "(病気になるまで)", options: ["until", "before", "when", "after"], answer: "until", explanation: "'not until S + V' で「S+Vまで〜しない」または「S+Vしてはじめて〜する」を意味します。" },
             { id: '10-3', lesson: 'GS_I-10', text: "______ I was staying in London, I had a chance to visit the National Gallery.", hint: "(ロンドンに滞在中、ナショナルギャラリーを訪れる機会があった。)", options: ["During", "While", "For", "As"], answer: "While", explanation: "'while' の後ろは 'S+V' です。'During my stay in London, I had a chance to visit the National Gallery.' のように 'during' の後ろは名詞/名詞句です。" },
@@ -1014,30 +1030,45 @@
             score = 0;
             currentQuestionIndex = 0;
 
-            if (currentMode === 'random-10') {
-                const shuffledAll = [...allQuestions];
-                shuffleArray(shuffledAll);
-                currentQuestions = shuffledAll.slice(0, questionCount);
+            if (currentMode.startsWith('GS_I-')) {
+                currentLessonId = currentMode;
+                let lessonQuestions = allQuestions.filter(q => q.lesson === currentLessonId);
+                const seenKey = `seenQuestions_${currentLessonId}`;
+                let seenIds = JSON.parse(localStorage.getItem(seenKey) || '[]');
+                
+                let availableQuestions = lessonQuestions.filter(q => 
+                    !seenIds.includes(q.id) || incorrectQuestionIds.includes(q.id)
+                );
+
+                if (availableQuestions.length === 0 && lessonQuestions.length > 0) {
+                    showModal('レッスン完了！', 'このレッスンの全問題をマスターしました！記録をリセットして、もう一度最初から挑戦します。', () => {
+                        localStorage.removeItem(seenKey);
+                        prepareQuiz();
+                    });
+                    return;
+                }
+                shuffleArray(availableQuestions);
+                currentQuestions = availableQuestions.slice(0, questionCount);
+
             } else if (currentMode === 'incorrect') {
                 currentQuestions = allQuestions.filter(q => incorrectQuestionIds.includes(q.id));
                 if (currentQuestions.length === 0) {
                     showModal('苦手克服モード', '現在、間違えた問題がありません。他のモードで学習しましょう！');
-                    quizModeSelect.value = 'random-10';
-                    localStorage.setItem('lastSelectedMode', 'random-10');
                     return;
                 }
                 shuffleArray(currentQuestions);
-            } else {
-                currentLessonId = currentMode;
-                currentQuestions = allQuestions.filter(q => q.lesson === currentLessonId);
-                shuffleArray(currentQuestions);
-                currentQuestions = currentQuestions.slice(0, questionCount);
+            } else { // random-10
+                const shuffledAll = [...allQuestions];
+                shuffleArray(shuffledAll);
+                currentQuestions = shuffledAll.slice(0, questionCount);
             }
 
-            startScreen.classList.remove('active');
-            quizScreen.classList.add('active');
-            resultScreen.classList.remove('active');
-            loadQuestion();
+            if(currentQuestions.length > 0) {
+                startScreen.classList.remove('active');
+                quizScreen.classList.add('active');
+                resultScreen.classList.remove('active');
+                loadQuestion();
+            }
         }
 
         function loadQuestion() {
@@ -1046,6 +1077,10 @@
                 return;
             }
             const question = currentQuestions[currentQuestionIndex];
+            if (!question) { // Bug fix guard
+                showQuizResult();
+                return;
+            }
             questionTextElement.textContent = question.text;
             hintTextElement.textContent = question.hint;
             optionsGridElement.innerHTML = '';
@@ -1082,6 +1117,14 @@
                 feedbackMessageElement.classList.add('correct-feedback');
                 score++;
                 incorrectQuestionIds = incorrectQuestionIds.filter(id => id !== questionId);
+                if (currentMode.startsWith('GS_I-')) {
+                    const seenKey = `seenQuestions_${currentMode}`;
+                    let seenIds = JSON.parse(localStorage.getItem(seenKey) || '[]');
+                    if (!seenIds.includes(questionId)) {
+                        seenIds.push(questionId);
+                        localStorage.setItem(seenKey, JSON.stringify(seenIds));
+                    }
+                }
             } else {
                 playSound('incorrect');
                 feedbackResultElement.innerHTML = `<strong>不正解...</strong> 正解は「${correctAnswer}」でした。`;
@@ -1113,7 +1156,12 @@
         }
 
         function updateNavigationButtons() {
-            nextButton.disabled = !answeredQuestions.has(currentQuestions[currentQuestionIndex]?.id);
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            if (!currentQuestion) {
+                nextButton.disabled = true;
+                return;
+            }
+            nextButton.disabled = !answeredQuestions.has(currentQuestion.id);
             nextButton.textContent = (currentQuestionIndex === currentQuestions.length - 1 && !nextButton.disabled) ? '結果を見る' : '次の問題';
         }
 
@@ -1243,19 +1291,8 @@
             localStorage.setItem('enableSound', String(enableSound));
         });
 
-        // PWA Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            const swScript = `const CACHE='v3';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/','index.html']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
-            const swBlob = new Blob([swScript], { type: 'application/javascript' });
-            window.addEventListener('load', () => navigator.serviceWorker.register(URL.createObjectURL(swBlob)));
-        }
-
         // Initialization
         document.addEventListener('DOMContentLoaded', () => {
-            const manifestContent = { "name": "BEⅠ GS Quiz", "short_name": "BEⅠ Quiz", "description": "Basic English Grammar & Structure Quiz App", "start_url": ".", "display": "standalone", "background_color": "#e0e7ff", "theme_color": "#6c5ce7", "icons": [{ "src": "https://placehold.co/192x192/6c5ce7/ffffff?text=BE", "sizes": "192x192", "type": "image/png" }, { "src": "https://placehold.co/512x512/6c5ce7/ffffff?text=BE", "sizes": "512x512", "type": "image/png" }] };
-            const blob = new Blob([JSON.stringify(manifestContent)], { type: 'application/json' });
-            document.querySelector('link[rel="manifest"]').href = URL.createObjectURL(blob);
-
             const isDark = localStorage.getItem('darkMode') === 'true';
             darkModeToggle.checked = isDark;
             
