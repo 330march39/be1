@@ -476,7 +476,7 @@
         }
         .confetti {
             position: absolute;
-            bottom: -10px;
+            bottom: -20px;
             width: 8px;
             height: 12px;
             background-color: #f06;
@@ -595,7 +595,7 @@
             <p class="text-lg mb-4" style="color: var(--text-primary);">学習したいモードを選択してください。</p>
             <div class="mode-selection-dropdown">
                 <select id="quizModeSelect">
-                    <option value="random-10">全レッスンからランダム10問</option>
+                    <option value="random">全レッスンからランダム出題</option>
                     <option value="incorrect">苦手克服モード</option>
                     <option value="GS_I-1">レッスン 1-1 (名詞・代名詞)</option>
                     <option value="GS_I-2">レッスン 1-2 (冠詞、形容詞・副詞)</option>
@@ -915,7 +915,7 @@
         let incorrectQuestionIds = [];
         let sessionIncorrectQuestionIds = [];
         let answeredQuestions = new Set();
-        let currentMode = 'random-10';
+        let currentMode = 'random';
         let questionCount = 10;
         let showProgress = true;
         let enableSound = true;
@@ -1016,15 +1016,29 @@
             'green': { light: { '--nav-button-bg': '#2ecc71', '--nav-button-hover-bg': '#27ae60', '--nav-button-shadow': 'rgba(46, 204, 113, 0.3)', '--progress-bar-bg': '#2ecc71' } },
             'orange': { light: { '--nav-button-bg': '#f39c12', '--nav-button-hover-bg': '#e67e22', '--nav-button-shadow': 'rgba(243, 156, 18, 0.3)', '--progress-bar-bg': '#f39c12' } }
         };
+        
+        const darkThemeColors = { '--bg-primary':'#1a1a2e','--bg-secondary':'#212a3d','--text-primary':'#e0e7ff','--text-secondary':'#9bb0d9','--button-bg-default':'#3a4a5c','--button-text-default':'#e0e7ff','--button-border-default':'#5c708a','--nav-button-bg':'#6a3a82','--nav-button-hover-bg':'#5a306e','--nav-button-shadow':'rgba(106, 58, 130, 0.3)','--start-button-bg':'#1e8247','--start-button-hover-bg':'#1a6e3c','--start-button-shadow':'rgba(30, 130, 71, 0.3)','--interrupt-button-bg':'#a93226','--interrupt-button-hover-bg':'#922a1f','--interrupt-button-shadow':'rgba(169, 50, 38, 0.3)','--progress-bar-bg':'#6a3a82','--feedback-bg':'#324054','--feedback-border':'#4a5a6e','--correct-feedback-text':'#c8e6c9','--correct-feedback-border':'#28a745','--incorrect-feedback-text':'#f0b2b2','--incorrect-feedback-border':'#dc3545','--correct-option-bg':'#2d6a4a','--incorrect-option-bg':'#8c3b3b','--score-color':'#e0e7ff','--score-comment-color':'#b886d9','--settings-button-bg':'#2471a3','--settings-button-hover-bg':'#1f608a','--settings-button-shadow':'rgba(36, 113, 163, 0.3)' };
 
         function applyColors(themeName, isDark) {
             const root = document.documentElement;
+            const defaultLightColors = {
+                '--bg-primary': '#e0e7ff', '--bg-secondary': '#ffffff', '--text-primary': '#2c3e50', '--text-secondary': '#7f8c8d',
+                '--button-bg-default': '#f0f4f8', '--button-text-default': '#34495e', '--button-border-default': '#dbe2ef',
+                '--start-button-bg': '#2ecc71', '--start-button-hover-bg': '#27ae60', '--start-button-shadow': 'rgba(46, 204, 113, 0.3)',
+                '--interrupt-button-bg': '#e74c3c', '--interrupt-button-hover-bg': '#c0392b', '--interrupt-button-shadow': 'rgba(231, 76, 60, 0.3)',
+                '--feedback-bg': '#fdfdfd', '--feedback-border': '#e0e0e0', '--correct-feedback-text': '#1a5e20', '--correct-feedback-border': '#28a745',
+                '--incorrect-feedback-text': '#721c24', '--incorrect-feedback-border': '#dc3545', '--correct-option-bg': '#c8e6c9', '--incorrect-option-bg': '#f0b2b2',
+                '--score-color': '#1e3a8a', '--score-comment-color': '#4f46e5', '--settings-button-bg': '#3498db', '--settings-button-hover-bg': '#2980b9', '--settings-button-shadow': 'rgba(52, 152, 219, 0.3)'
+            };
+
             if (isDark) {
                 Object.entries(darkThemeColors).forEach(([prop, value]) => root.style.setProperty(prop, value));
             } else {
-                Object.entries(themes.default.light).forEach(([prop, value]) => root.style.setProperty(prop, value)); // Reset to default light first
-                const theme = themes[themeName]?.light || themes.default.light;
-                Object.entries(theme).forEach(([prop, value]) => root.style.setProperty(prop, value));
+                // Reset to default light theme first
+                Object.entries(defaultLightColors).forEach(([prop, value]) => root.style.setProperty(prop, value));
+                // Apply specific theme overrides
+                const themeOverrides = themes[themeName]?.light || themes.default.light;
+                Object.entries(themeOverrides).forEach(([prop, value]) => root.style.setProperty(prop, value));
             }
         }
 
@@ -1055,9 +1069,8 @@
             currentQuestionIndex = 0;
 
             if (currentMode.startsWith('GS_I-')) {
-                currentLessonId = currentMode;
-                let lessonQuestions = allQuestions.filter(q => q.lesson === currentLessonId);
-                const seenKey = `seenQuestions_${currentLessonId}`;
+                let lessonQuestions = allQuestions.filter(q => q.lesson === currentMode);
+                const seenKey = `seenQuestions_${currentMode}`;
                 let seenIds = JSON.parse(localStorage.getItem(seenKey) || '[]');
                 
                 let availableQuestions = lessonQuestions.filter(q => 
@@ -1081,7 +1094,7 @@
                     return;
                 }
                 shuffleArray(currentQuestions);
-            } else { // random-10
+            } else { // random mode
                 const shuffledAll = [...allQuestions];
                 shuffleArray(shuffledAll);
                 currentQuestions = shuffledAll.slice(0, questionCount);
@@ -1315,7 +1328,7 @@
             const storedIncorrect = localStorage.getItem('incorrectQuestions');
             if (storedIncorrect) incorrectQuestionIds = JSON.parse(storedIncorrect);
 
-            quizModeSelect.value = localStorage.getItem('lastSelectedMode') || 'random-10';
+            quizModeSelect.value = localStorage.getItem('lastSelectedMode') || 'random';
             questionCountSelect.value = localStorage.getItem('questionCount') || '10';
             showProgress = localStorage.getItem('showProgress') !== 'false';
             showProgressToggle.checked = showProgress;
